@@ -10,12 +10,16 @@ $('#tipoNovoProduto').on('change', function(){
     }
 })
 
-$('#codigoNovoProduto').on('focusout', function(){
-    var codigo = $(this).val()
+$('#codigoNovoProduto').keypress(function(event){
+    var code = event.keyCode || event.which;
 
-    // console.log(codigo)
-    
-    chamarApiNomeProduto(codigo)
+    if(code == 13){
+        var codigo = $(this).val()
+        
+        // console.log(codigo)
+        
+        chamarApiNomeProduto(codigo)
+    }
 })
 
 async function chamarApiNomeProduto(codigo){

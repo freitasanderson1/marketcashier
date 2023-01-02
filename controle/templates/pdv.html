@@ -1,1 +1,39 @@
-<h1 class="text-center">PDV</h1>
+<div class="container-pdv">
+    <div class="d-flex justify-content-evenly pt-3">
+        <div style="width:70vw;">
+            <div class="card shadow rounded-4 text-black mb-4" style="min-height: 7.5rem;">
+                <div class="card-body align-items-center d-flex justify-content-center">
+                    <input type="text" id="produto-nome" class="text-center form-control mb-0" style="font-size: 40px;"></input> 
+                </div>
+            </div>
+        </div>
+        <div style="width:20vw;">
+            <div class="card shadow rounded-4 text-black mb-4" style="min-height: 7.5rem;">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h6 class="text-center" style="font-size: 24px; margin-bottom: 0px;">Quantidade:</h6>
+                    <input type="number" id="produto-quantidade" value="1" class="form-control mb-0 mx-auto" style="max-width: 3.5rem;font-size: 36px;"></input>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-infos">
+
+        <div class="list-items-venda w-75">
+            
+        </div>
+
+        <div class="produto-infos  w-25">
+
+        </div>
+    </div>
+    <div class="button-actions">
+
+    </div>
+</div>
+
+<script>
+    $("#produto-nome").keypress(function(event){
+        console.log(event.keyCode); 
+      });
+</script>
