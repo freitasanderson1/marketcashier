@@ -2,9 +2,13 @@
 
 Postgresql + Django 4.2
 
-Vendas, cadastrar cliente, usuários, caixa, controle de estoque
+- Vendas
+- Cadastrar cliente
+- Usuários
+- Caixa
+- Controle de estoque
 
-- No cadastro do cliente sempre pedir :
+### No cadastro do cliente sempre pedir :
 - Nome completo
 - CPF:
 - Celular:
