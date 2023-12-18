@@ -16,16 +16,12 @@ case $1 in
         echo "Coletando arquivos estáticos..."
         python manage.py collectstatic -c --no-input
 
-        #echo "Compressing static files..."
-        #python manage.py compress
     ;;
     *)
-        echo "Iniciando Cecane"
+        echo "Iniciando Market Cashier"
 
         cleanBuild
-        
-        export ENV_FILE=dev.env
 
-        python manage.py runserver 0.0.0.0:1313
+        python manage.py runserver 0.0.0.0:1404
     ;;
 esac

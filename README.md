@@ -1,6 +1,6 @@
 # Freitas Supermarket Cashier
 
-Postgresql + Django 4.2
+Postgresql + Django 5.0 + Python 3.12
 
 - Vendas
 - Cadastrar cliente
