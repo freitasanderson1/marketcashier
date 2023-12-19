@@ -1,0 +1,59 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+
+    <title>
+      {% block title %}Market Cashier{% endblock%}
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <link rel="icon" href="{%  static '/assets/IMG/logo.png' %}">
+
+    <!--ChoiceJS CSS-->
+    <link rel="stylesheet" href="{% static 'assets/CSS/ChoicesJS/base.min.css'%}"/>
+    <link rel="stylesheet" href="{% static 'assets/CSS/ChoicesJS/choices.min.css'%}"/>
+
+    <link rel="stylesheet" href="{% static 'assets/CSS/bootstrap.min.css'%}"/>
+    
+    <script src="{% static "assets/JS/bootstrap.bundle.min.js" %}" ></script>
+  
+    <link rel="stylesheet" href="{% static 'assets/CSS/font-awesome-6.5.1.all.min.css'%}"/>
+
+    <link rel="stylesheet" href="{% static 'assets/CSS/style.css'%}"/>
+
+    <script src="{% static "assets/JS/jquery-3.7.1.js" %}" ></script>
+
+  </head>
+
+  <body class="">
+    
+
+    <div id="main" class="container mx-auto" style="padding-top: 0px;">
+      {% if messages %}
+        <ul class="messages pt-3">
+            {% for message in messages %}
+                    <div class="alert alert-{% if message.tags == 'error' %}warning{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show">
+                        <span style="">
+                            {{ message|escape }}
+
+                        </span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+            {% endfor %}
+        </ul>
+      {% endif %}
+
+      {% block content %}
+
+      {% endblock content %}
+    </div>
+
+    
+    <script src="{% static "assets/JS/popper.min.js" %}" ></script>
+    <script src="{% static "assets/JS/bootstrap.min.js" %}" ></script>
+    
+  </body>
+
+</html>

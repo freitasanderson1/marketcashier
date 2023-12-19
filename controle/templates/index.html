@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block title %}Mercado Sena{% endblock %}
+
+{% block content %}
+
+
+<div class="container bg-white d-flex flex-column align-items-center justify-content-center h-100 pt-5" style="border-radius:52px;">
+
+    
+    <div class="segunda-Logo pb-4">
+
+        <a class="link-topbar d-flex align-items-center" href="">
+            
+            <div class=" d-flex align-items-center">
+                <img id="logo_nav"src="{%static 'assets/IMG/logo.png' %}" width="150" alt="Logo Mercadinho Sena">                    
+            </div>
+            
+        </a>
+    </div>
+
+    <br>
+
+    <div class="tab-content w-100" id="myTabContent">
+
+        <!-- Tab do Menu Index-->
+        <div class="tab-pane fade active show" id="menuIndex" role="tabpanel" aria-labelledby="menuIndex-tab">
+            {% include 'menuIndex.html' %}
+        </div>
+    
+        <!-- Tab de Clientes -->
+        <div class="tab-pane fade" id="clientes" role="tabpanel" aria-labelledby="clientes-tab">
+            {% include 'clientes.html' %}
+        </div>
+
+        <!-- Tab de Vendas -->
+        <div class="tab-pane fade" id="vendas" role="tabpanel" aria-labelledby="vendas-tab">
+            {% include 'vendas.html' %}
+        </div>
+
+    </div>
+</div>
+
+<script src="{% static "assets/JS/tabIndex.js" %}"></script>
+
+{% endblock%}

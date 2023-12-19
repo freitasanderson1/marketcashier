@@ -1,0 +1,1 @@
+from cadastro.admin.ClienteAdmin import ClienteAdmin

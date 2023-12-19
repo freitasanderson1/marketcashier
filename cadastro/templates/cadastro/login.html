@@ -1,0 +1,70 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block title %}Entrar{% endblock %}
+
+{% block content %}
+
+<div class="container bg-white d-flex align-items-center justify-content-center h-100 pt-5" style="border-radius:52px;">
+
+    <div class="containerLogin">
+        <div class="segunda-Logo pb-4">
+
+            <a class="link-topbar d-flex align-items-center" href="">
+                
+                <div class=" d-flex align-items-center">
+                    <img id="logo_nav"src="{%static 'assets/IMG/logo.png' %}" width="300" alt="Logo Mercadinho Sena">                    
+                </div>
+                
+            </a>
+        </div>
+        
+
+        <form method="post" class="mb-3" validate>
+            {% csrf_token %}
+
+            <div class="d-flex flex-column align-items-center col" style="">
+                {% for field in form %}
+
+                            {% if field.name == 'username' %}
+
+                                <div class="form-floating mt-4 mb-4">
+                                    <input type="name" name="{{ field.name }}" class="form-control mb-0" id="floatingInputUsername" style="min-width:150px; background-color:#F2F2F2; border-radius:20px;" placeholder="anderson" required>
+                                    <label for="floatingInputUsername" style="color:#443700;">Usuário</label>
+                                </div>
+
+                            {% else %}
+
+                                <div class="form-floating mt-4 mb-4">
+                                    <input type="password" name="{{ field.name }}" class="form-control mb-0" id="floatingInputPassword" placeholder="*********" style="min-width:150px; background-color:#F2F2F2; border-radius:20px;" minlenght="8" maxlength="20" required>
+                                    <label for="floatingInputPassword" style="color:#443700;">{{ field.label_tag }}</label>
+                                </div>
+
+                            {% endif %}
+
+
+                            {% if field.errors %}
+                                <ul>
+
+                                    <b>
+
+                                        <small style="color:#b00000; font-size:12px;">{{ field.errors|striptags }}</small>
+                                    </b>
+                                </ul>
+
+                            {% endif %}
+
+                {% endfor %}
+                <button type="submit" class="btn btn-entrar px-5" style="font-size:18px; background-color:#FF0000; color:#FFCC00; font-weight:500; border-radius:20px;">Entrar</button>
+            </div>
+
+
+
+            
+        </form>
+
+    </div>
+</div>
+
+{% endblock%}

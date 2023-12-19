@@ -1,14 +1,7 @@
+import os
 from pathlib import Path
 
-BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-SECRET_KEY = 'django-insecure-ei(i_^j+a*wk0g3@ltnfu7gb8ypqko8eb^c=9%$l$b6qlwwu7i'
-
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 DEFAULT_APPS = [
     'django.contrib.admin',
@@ -20,7 +13,8 @@ DEFAULT_APPS = [
 ]
 
 LOCAL_APPS = [
-
+    'cadastro',
+    'controle'
 ]
 
 OTHER_APPS = [
@@ -59,21 +53,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'marketcashier.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
-# Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -88,12 +67,13 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+LOGIN_URL = '/login/'
 
+TIME_ZONE = 'America/Sao_Paulo'
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.0/topics/i18n/
+DATE_FORMAT = '%d/%m/%Y'
 
-LANGUAGE_CODE = 'PT-BR'
+LANGUAGE_CODE = 'pt-BR'
 
 TIME_ZONE = 'UTC'
 
@@ -101,13 +81,16 @@ USE_I18N = True
 
 USE_TZ = True
 
+MEDIA_URL = '/marketcashier/media/'
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+STATIC_URL = '/marketcashier/static/'
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "../static-global"),
+]
+
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"

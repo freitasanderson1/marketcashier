@@ -1,0 +1,1 @@
+from controle.views.IndexMarket import IndexMarket
