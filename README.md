@@ -9,4 +9,8 @@ Postgresql 15 (Compose) + Django 5.0 + Python 3.12
 - Controle de estoque
 
 
+Criar Baseview herdando variável NEXT por contexto:
+
+context['NEXT'] = f'?next={request.path}'
+
 ?next={{request.path}}
