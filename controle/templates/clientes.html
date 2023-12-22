@@ -1,7 +1,20 @@
 {% extends "base/baseOption.html" %}
 
 {% block containerOption %}
- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-    Rerum doloremque ut saepe voluptatem. 
-    Tempora vero aperiam enim deleniti aut dignissimos velit sequi similique nemo mollitia fugit, at perspiciatis illo cupiditate.</p>
+    <div class="d-flex justify-content-start">
+
+        <a class="bg-success p-2 mx-2 rounded-4 text-white text-center" id="listarClientes" style="text-decoration: none; width: 10rem;">
+            <span class="text-center" style="font-size: 20px;" class="text-white">Listar Clientes</span> 
+        </a>
+
+        <a class="bg-success p-2 mx-2 rounded-4 text-white text-center" id="novoCliente" style="text-decoration: none; width: 10rem;">
+            <span class="text-center" style="font-size: 20px;" class="text-white">Novo Cliente</span> 
+        </a>
+    </div>
+
+    <div class="mt-4">
+        <ul id="listClientes" style="list-style-type: none;">
+            
+        </ul>
+    </div>
 {% endblock containerOption %}

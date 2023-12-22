@@ -1,0 +1,1 @@
+from cadastro.serializers.ClienteSerializer import ClienteSerializer

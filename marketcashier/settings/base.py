@@ -18,7 +18,7 @@ LOCAL_APPS = [
 ]
 
 OTHER_APPS = [
-
+    'rest_framework',
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + LOCAL_APPS + OTHER_APPS
