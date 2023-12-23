@@ -13,4 +13,6 @@ Criar Baseview herdando variável NEXT por contexto:
 
 context['NEXT'] = f'?next={request.path}'
 
+context['NEXT'] = f'?next={self.request.path}'
+
 ?next={{request.path}}
