@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 
 from cadastro.views import LoginView, SairView, ClientesApiView
-from controle.views import IndexMarket, VendasApiView, ProdutosApiView, ItemVendaApiView
+from controle.views import IndexMarket, GetProductView, VendasApiView, ProdutosApiView, ItemVendaApiView
 
 from rest_framework.routers import DefaultRouter
 
@@ -10,6 +10,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', IndexMarket.as_view(), name='index'),
+    path('product/<str:barcode>', GetProductView.as_view(), name='getProduct'),
+
 
     #Logins views
     path('login/', LoginView.as_view(), name='login'),

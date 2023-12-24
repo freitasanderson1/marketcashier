@@ -13,3 +13,7 @@ class ProdutosApiView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Produto.objects.filter(ativo=True)
+
+    def create(self, request, *args, **kwargs):
+        print(f'Request: {request.POST}')
+        return super().create(request, *args, **kwargs)
