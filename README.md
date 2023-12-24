@@ -16,3 +16,10 @@ context['NEXT'] = f'?next={request.path}'
 context['NEXT'] = f'?next={self.request.path}'
 
 ?next={{request.path}}
+
+
+print(request.resolver_match.view_name) # my_app1:index
+
+print(request.resolver_match.app_name) # my_app1
+
+print(request.resolver_match.url_name) # index
