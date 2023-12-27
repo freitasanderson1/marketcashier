@@ -1,12 +1,10 @@
 from django.http import JsonResponse
 from django.views import View
 
-from controle.models import Venda
 from bs4 import BeautifulSoup
 import requests
 
-class GetProductView(View):
-    template_name = "index.html"
+class GetProductNameView(View):
 
     def get(self, request, *args, **kwargs):
         

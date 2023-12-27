@@ -6,6 +6,8 @@ class Produto(models.Model):
     id = models.BigAutoField(primary_key=True)
 
     nome = models.TextField(u'Nome do Produto', max_length=255)
+
+    codigo = models.TextField(u'Código do Produto', max_length=25, null=True, blank=True)
     
     estoque = models.FloatField(u'Estoque do Produto', null=False, blank=False, default=1.00)
     
