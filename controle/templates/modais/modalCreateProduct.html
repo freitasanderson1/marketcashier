@@ -1,0 +1,44 @@
+<!-- Novo Produto Modal -->
+<div class="modal fade" id="modalCreateProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalCreateProductLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalCreateProductLabel"></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex flex-column">
+            {% csrf_token %}
+
+            <div class="d-flex flex-column mb-3">
+                <label class="form-label" for="codigoNovoProduto">Código do Produto</label>
+                <input class="form-control mb-0" type="text" name="codigoNovoProduto" id="codigoNovoProduto" value="">
+            </div>
+            <div class="d-flex flex-column mb-1">
+                <label class="form-label" for="nomeNovoProduto">Nome do Produto</label>
+                <input class="form-control" type="text" name="nomeNovoProduto" id="nomeNovoProduto" value="">
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="tipoNovoProduto" checked>
+                <label class="form-check-label" for="tipoNovoProduto">KGs ou Unidades</label>
+                <div class="form-text" style="position: relative; left:-24px;">Marque para produto por Unidade e desmarque para por KG.</div>
+                <br>
+            </div>
+            <div class="d-flex flex-column mb-3">
+                <label class="form-label" for="estoqueNovoProduto">Estoque do Produto</label>
+                <input class="form-control mb-0" type="number" name="estoqueNovoProduto" id="estoqueNovoProduto" value="">
+                <div class="form-text">Unidades ou KGs</div>
+            </div>
+
+            <div class="d-flex flex-column mb-1">
+                <label class="form-label" for="precoNovoProduto">Preço do Produto</label>
+                <input class="form-control" type="number" name="precoNovoProduto" id="precoNovoProduto" step="0.01" value="">
+            </div>
+
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary btn-submit-new-product">Editar</button>
+        </div>
+    </div>
+    </div>
+</div>

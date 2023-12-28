@@ -49,6 +49,7 @@ function insertprodutos(data){
                         <button type="button" class="btn btn-success btn-update-product" 
                             data-ms-id="${element.id}" 
                             data-ms-nome="${element.nome}" 
+                            data-ms-codigo="${element.codigo}" 
                             data-ms-estoque="${element.estoque}"
                             data-ms-preco="${element.preco}"
                             data-ms-unidadepeso="${element.unidadePeso}"
@@ -63,6 +64,7 @@ function insertprodutos(data){
         $('.btn-update-product').on('click', function(){
             var id = $(this).data('ms-id')
             var nome = $(this).data('ms-nome')
+            var codigo = $(this).data('ms-codigo')
             var estoque = $(this).data('ms-estoque')
             var preco = $(this).data('ms-preco')
             var unidadepeso = $(this).data('ms-unidadepeso')
@@ -74,6 +76,7 @@ function insertprodutos(data){
 
             $('#idProduto').val(`${id}`)
             $('#nomeProduto').val(`${nome}`)
+            $('#codigoProduto').val(`${codigo}`)
             $('#estoqueProduto').val(`${estoque}`)
             $('#precoProduto').val(`${preco}`)
             

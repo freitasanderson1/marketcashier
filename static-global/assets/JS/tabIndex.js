@@ -10,6 +10,6 @@ $('.nav-link').on('click', function(){
 
     $(`${target}`).addClass('active show')
     
-    console.log(target)
+    // console.log(target)
 
 })
