@@ -1,0 +1,45 @@
+<!-- Novo Cliente Modal -->
+<div class="modal fade" id="modalCreateCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalCreateClienteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalCreateClienteLabel">Cadastrando Cliente</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex flex-column">
+            {% csrf_token %}
+
+            <div class="d-flex flex-column mb-1">
+                <label class="form-label" for="nomeNovoCliente">Nome</label>
+                <input class="form-control" type="text" name="nomeNovoCliente" id="nomeNovoCliente" value="">
+            </div>
+            <div class="d-flex flex-column mb-3">
+                <label class="form-label" for="cpfNovoCliente">CPF</label>
+                <input class="form-control mb-0" type="text" name="cpfNovoCliente" id="cpfNovoCliente" value="">
+            </div>
+            <div class="d-flex flex-column mb-3">
+                <label class="form-label" for="dataNascimento">Data de Nascimento</label>
+                <input name="dataNascimento" type="date" class="form-control mb-0" maxlength="10" id="data_id" placeholder=" ">
+            </div>
+            <div id="dddCadastro" class="d-flex">
+                <div class="col-2">
+                    <label class="form-label" for="ddd">DDD</label>
+                    <input class="form-control mb-0" name="ddd" type="tel" class="form-control" minlenght="2" maxlength="2" id="ddd_id" placeholder=" " required>
+                </div>
+                <div class="mr-0 col-10">
+                    <label class="form-label" for="telefone">Telefone</label>
+                    <input class="form-control mb-0" name="telefone" type="tel" class="form-control" minlenght="8" maxlength="9" id="telefone_id" placeholder=" " required>
+                </div>
+            </div>
+            <div class="d-flex flex-column mb-3">
+                <label class="form-label" for="enderecoNovoCliente">Endereço</label>
+                <input class="form-control mb-0" type="text" name="enderecoNovoCliente" id="enderecoNovoCliente" value="">
+            </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary btn-submit-new-cliente">Cadastrar</button>
+        </div>
+    </div>
+    </div>
+</div>

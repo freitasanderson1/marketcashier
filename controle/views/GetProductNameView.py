@@ -9,6 +9,26 @@ class GetProductNameView(View):
     def get(self, request, *args, **kwargs):
         
         barcode = kwargs.get('barcode').strip()
+        
+        url = f'https://api.cosmos.bluesoft.com.br/gtins/{barcode}.json'
+
+        headers = {
+            'X-Cosmos-Token': 'E5WjrXs-0DeTA9kbiMoFPQ',
+            'Content-Type': 'application/json',
+            'User-Agent': 'Cosmos-API-Request'
+        }
+        
+        resp = requests.get(url, headers=headers).json()
+
+        title = resp.get('description')
+
+        if title:
+            product = {
+                "name": title,
+                "barcode":barcode
+            }
+            return JsonResponse(product)
+        
         # Site que será coletado
         site = f"https://go-upc.com/search?q={barcode}"
 
@@ -17,8 +37,10 @@ class GetProductNameView(View):
 
         # Formatando os dados
         dados = BeautifulSoup(html, 'html.parser')
-
-        title = dados.find("h1", class_="product-name")
+        try:
+            title = dados.find("h1", class_="product-name")
+        except:
+            title = None
 
         if title:
             product = {
@@ -38,9 +60,11 @@ class GetProductNameView(View):
         response = requests.get(url, headers=headers)
 
         dados = response.json()
-        title = dados['properties']['title'][0]
-        
-        # print(title)
+        try:
+            title = dados['properties']['title'][0]
+        except:
+            title = None
+        print(title)
         
         if title:
             product = {
@@ -62,9 +86,12 @@ class GetProductNameView(View):
         response = requests.get(url, headers=headers, params=querystring)
 
         dados = response.json()
-        title = dados['product']['title']
+        try:
+            title = dados['product']['title']
+        except:
+            title = None
         
-        # print(title)
+        print(title)
         
         if title:
             product = {
@@ -86,9 +113,12 @@ class GetProductNameView(View):
         response = requests.get(url, headers=headers, params=querystring)
         
         dados = response.json()
-        title = dados['products'][0]['title']
+        try:
+            title = dados['products'][0]['title']
+        except:
+            title = None
         
-        # print(title)
+        print(title)
         # [print(f'{t} e Index: {index}\n') for t,index in enumerate(title)]
         
         if title:
@@ -116,9 +146,13 @@ class GetProductNameView(View):
         response = requests.post(url, json=payload, headers=headers)
 
         dados = response.json()
-        title = dados['product']['title']
+
+        try:
+            title = dados['product']['title']
+        except:
+            title = None
         
-        # print(title)
+        print(title)
         # [print(f'{t} e Index: {index}\n') for t,index in enumerate(title)]
         
         if title:

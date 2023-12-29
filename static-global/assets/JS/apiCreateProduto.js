@@ -10,11 +10,11 @@ $('#tipoNovoProduto').on('change', function(){
     }
 })
 
-$('#codigoNovoProduto').on('input', function(){
+$('#codigoNovoProduto').on('focusout', function(){
     var codigo = $(this).val()
 
     // console.log(codigo)
-
+    
     chamarApiNomeProduto(codigo)
 })
 
