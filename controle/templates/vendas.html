@@ -1,25 +1,24 @@
 {% extends "base/baseOption.html" %}
 
 {% block containerOption %}
-    <div class="d-flex justify-content-inline">
-        
-        <a class="nav-link mx-1" id="clientes-tab" href="#clientes" role="tab"
-        aria-controls="clientes" aria-selected="true">
-            <div class="card shadow rounded-4 bg-success text-white text-center mb-4">
-                <div class="card-body align-items-center d-flex justify-content-center">
-                    <h1 class="text-center py-1" style="font-size: 20px;" class="text-white">Nova Venda</h1>
-                </div>
-            </div>
-        </a>
 
-        <a class="nav-link mx-1" id="clientes-tab" href="#clientes" role="tab"
-        aria-controls="clientes" aria-selected="true">
-            <div class="card shadow rounded-4 bg-success text-white text-center mb-4">
-                <div class="card-body align-items-center d-flex justify-content-center">
-                    <h1 class="text-center py-1" style="font-size: 20px;" class="text-white">Consultar Vendas</h1>
-                </div>
-            </div>
-        </a>
-    </div>
+<div class="row">
 
+    <a class="nav-link" style="width: 45%; margin-left: auto; margin-right: auto;" id="vendas-tab" href="#vendas" role="tab"
+    aria-controls="vendas" aria-selected="true">
+        <div class="card shadow rounded-4 bg-success text-white mb-4">
+            <div class="card-body align-items-center d-flex justify-content-center">
+                <h1 class="text-center" style="font-size: 40px; padding-top: 10rem; padding-bottom: 10rem;" class="text-white">Nova Venda</h1> 
+            </div>
+        </div>
+    </a>
+    <a class="nav-link" style="width: 45%; margin-left: auto; margin-right: auto;" id="clientes-tab" href="#clientes" role="tab"
+    aria-controls="clientes" aria-selected="true">
+        <div class="card shadow rounded-4 bg-primary text-white text-center mb-4">
+            <div class="card-body align-items-center d-flex justify-content-center">
+                <h1 class="text-center" style="font-size: 40px; padding-top: 10rem; padding-bottom: 10rem;" class="text-white">Consultar Vendas</h1>
+            </div>
+        </div>
+    </a>
+</div>
 {% endblock containerOption %}
