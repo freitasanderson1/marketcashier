@@ -9,42 +9,30 @@
 
 <div class="container bg-white d-flex flex-column align-items-center justify-content-top h-100 pt-5" style="border-radius:52px;">
 
-    
-    <div class="segunda-Logo pb-4">
-
-        <a class="link-topbar d-flex align-items-center" href="">
-            
-            <div class=" d-flex align-items-center">
-                <img id="logo_nav"src="{%static 'assets/IMG/logo.png' %}" width="150" alt="Logo Mercadinho Sena">                    
-            </div>
-            
-        </a>
-    </div>
-
-    <br>
-
-    <div class="tab-content w-100" id="tabHome">
+    <!-- Tab menu -->
+    <div class="tab-content w-100" id="tabHome" role="tab-main" aria-labelledby="tabHome-tab">
 
         <!-- Tab do Menu Index-->
-        <div class="tab-pane fade active show" id="menuIndex" role="tabpanel" aria-labelledby="menuIndex-tab">
+        <div class="tab-pane inside-tab fade active show" id="menuIndex" role="tabpanel" aria-labelledby="menuIndex-tab">
             {% include 'menuIndex.html' %}
         </div>
     
         <!-- Tab de Clientes -->
-        <div class="tab-pane fade" id="clientes" role="tabpanel" aria-labelledby="clientes-tab">
+        <div class="tab-pane inside-tab fade" id="clientes" role="tabpanel" aria-labelledby="clientes-tab">
             {% include 'clientes.html' %}
         </div>
 
         <!-- Tab de Vendas -->
-        <div class="tab-pane fade" id="vendas" role="tabpanel" aria-labelledby="vendas-tab">
+        <div class="tab-pane inside-tab fade" id="vendas" role="tabpanel" aria-labelledby="vendas-tab">
             {% include 'vendas.html' %}
         </div>
 
         <!-- Tab de controleEstoque -->
-        <div class="tab-pane fade" id="controleEstoque" role="tabpanel" aria-labelledby="controleEstoque-tab">
+        <div class="tab-pane inside-tab fade" id="controleEstoque" role="tabpanel" aria-labelledby="controleEstoque-tab">
             {% include 'controleEstoque.html' %}
         </div>
     </div>
+
 </div>
 
 <script src="{% static "assets/JS/tabIndex.js" %}"></script>

@@ -28,26 +28,44 @@
   </head>
 
   <body class="">
-    
+    <div class="segunda-Logo pt-2 pb-4">
 
-    <div id="main" class="container-fluid mx-auto h-100 d-flex align-items-start" style="padding-top: 0px;">
-      {% if messages %}
-        <ul class="messages pt-3">
-            {% for message in messages %}
-                    <div class="alert alert-{% if message.tags == 'error' %}warning{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show">
-                        <span style="">
-                            {{ message|escape }}
+      <a class="link-topbar d-flex justify-content-center" href="">
+          
+        <img id="logo_nav"src="{%static 'assets/IMG/logo.png' %}" width="150" alt="Logo Mercadinho Sena">                    
+          
+      </a>
+    </div>
 
-                        </span>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-            {% endfor %}
-        </ul>
-      {% endif %}
+    <br>
+  
+    <div class="tab-content w-100" id="tabHome" role="tab-main" aria-labelledby="tabHome-tab">
+      <!-- Tab de pdv -->
+      <div class="tab-pane fade bg-primary" id="pdv" role="tab-main" aria-labelledby="pdv-tab" style="width:100vw;">
+        {% include 'pdv.html' %}
+      </div>
 
-      {% block content %}
+      <div id="main" class="tab-pane fade active show container-fluid mx-auto h-100 d-flex align-items-start" style="padding-top: 0px;">
+        {% if messages %}
+          <ul class="messages pt-3">
+              {% for message in messages %}
+                      <div class="alert alert-{% if message.tags == 'error' %}warning{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show">
+                          <span style="">
+                              {{ message|escape }}
 
-      {% endblock content %}
+                          </span>
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+              {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% block content %}
+
+        {% endblock content %}
+      </div>
+
+      
     </div>
 
     
