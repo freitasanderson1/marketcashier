@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 
 from cadastro.views import LoginView, SairView, ClientesApiView
-from controle.views import IndexMarket, GetProductNameView, CreateProductView
+from controle.views import IndexMarket, GetProductNameView
 
 from controle.views import VendasApiView, ProdutosApiView, ItemVendaApiView
 
@@ -12,7 +12,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', IndexMarket.as_view(), name='index'),
-    path('cadastrarProduto/', CreateProductView.as_view(), name='createProduct'),
     path('product/<str:barcode>', GetProductNameView.as_view(), name='getProductName'),
 
 

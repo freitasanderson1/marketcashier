@@ -14,6 +14,26 @@ class ProdutosApiView(viewsets.ModelViewSet):
     def get_queryset(self):
         return Produto.objects.filter(ativo=True)
 
+    def retrieve(self, request, *args, **kwargs):
+        barcode = kwargs.get('pk')
+
+        if barcode:
+            # print(f"BARCODE do Produto: {barcode}")
+            try:
+                queryset = Produto.objects.filter(codigo=barcode)
+                Produto_serialized = ProdutoSerializer(queryset, many=True)
+                responseData = Produto_serialized.data[0]
+                # print(f'Dados Serializados: {responseData}')
+                status=200
+            except:
+                responseData = {'mensagem': 'O ID do Produto não existe.'}
+                status=400
+        else:
+            responseData = {'mensagem': 'A API não recebeu os parâmetros necessários.'}
+            status=412     
+                                                                                                                                                                                          
+        return Response(responseData,status=status)
+    
     def create(self, request, *args, **kwargs):
 
         # print(f'Request Create: {request.POST}')

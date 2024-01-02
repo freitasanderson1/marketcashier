@@ -1,5 +1,4 @@
 from controle.views.IndexMarket import IndexMarket
-from controle.views.CreateProductView import CreateProductView
 
 from controle.views.GetProductNameView import GetProductNameView
 

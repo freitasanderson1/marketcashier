@@ -32,23 +32,23 @@ class Venda(models.Model):
     def __str__(self):
         return f'Venda {self.id} - {self.cliente} comprou R${self.valor} em {self.dataCadastro.strftime("%d/%m/%Y às %H:%M")}'
     
-    def save(self):
-        super(Venda, self).save()
+    # def save(self):
+    #     super(Venda, self).save()
         
-        produtos = self.itens.filter(ativo=True).values('valorTotal')
+    #     produtos = self.itens.filter(ativo=True).values('valorTotal')
         
-        listaValores = list()
+    #     listaValores = list()
 
-        [listaValores.append(float(valor['valorTotal'])) for valor in produtos]
+    #     [listaValores.append(float(valor['valorTotal'])) for valor in produtos]
 
-        # print(listaValores)
+    #     # print(listaValores)
 
-        if produtos:
-            self.valor = sum(listaValores)
+    #     if produtos:
+    #         self.valor = sum(listaValores)
 
-        self.finalizarVenda()
+    #     self.finalizarVenda()
 
-        super(Venda, self).save()
+    #     super(Venda, self).save()
 
     
     def finalizarVenda(self):

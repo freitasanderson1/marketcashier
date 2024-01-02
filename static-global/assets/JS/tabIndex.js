@@ -13,6 +13,45 @@ $('.nav-link').on('click', function(){
         $(`${target}`).parent().parent().parent().addClass('active show')
     }
     
-    // console.log(target)
+    console.log(target)
 
+    if (target == '#pdv'){
+        CriarNovaVenda()
+    }
 })
+
+function CriarNovaVenda(){
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+
+    var vendedor = $('#vendedorId').val()
+
+    var data = {
+        "valor": '0.00',
+        "finalizado": false,
+        "pago": false,
+        "ativo": true,
+        "cliente": null,
+        "vendedor": vendedor
+    }
+
+    var response = $.ajax({
+        url: 'api/dados_vendas',
+        type: 'post',
+        data: data,
+        dataType: "json",
+        accept: "application/json",
+        beforeSend: function (xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        },
+        success: function (dados) {
+            // console.log(dados)
+
+            $('#IdVenda').val(dados.id)
+        },
+        error: function (retorno) {
+            console.log(retorno)
+        },
+
+    })
+
+}
