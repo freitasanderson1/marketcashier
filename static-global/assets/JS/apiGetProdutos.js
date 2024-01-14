@@ -43,7 +43,7 @@ function insertprodutos(data){
                     </div>
 
                     <div class="col">
-                        <b>Preço:</b> <span class="text-success">R$ ${element.preco}</span>
+                        <b>Preço:</b> <span class="text-success">${element.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
                     </div>
                     <div class="col d-flex justify-content-center">
                         <button type="button" class="btn btn-success btn-update-product" 

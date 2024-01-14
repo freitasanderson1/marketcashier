@@ -43,11 +43,11 @@
         {% include 'pdv.html' %}
       </div>
 
-      <div id="main" class="tab-pane fade active show container-fluid mx-auto h-100 d-flex align-items-start" style="padding-top: 0px;">
+      <div id="main" class="tab-pane fade active show container-fluid mx-auto h-100 d-flex align-items-start flex-column" style="padding-top: 0px;">
         {% if messages %}
-          <ul class="messages pt-3">
+          <ul class="messages mb-0 mx-auto">
               {% for message in messages %}
-                      <div class="alert alert-{% if message.tags == 'error' %}warning{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show">
+                      <div class="alert mb-0 alert-{% if message.tags == 'error' %}warning{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show">
                           <span style="">
                               {{ message|escape }}
 

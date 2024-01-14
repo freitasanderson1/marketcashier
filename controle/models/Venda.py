@@ -30,7 +30,9 @@ class Venda(models.Model):
         ordering = ['id','dataCadastro']
 
     def __str__(self):
-        return f'Venda {self.id} - {self.cliente} comprou R${self.valor} em {self.dataCadastro.strftime("%d/%m/%Y às %H:%M")}'
+        cliente = self.cliente if self.cliente else 'Cliente sem Cadastro'
+        string = f'Venda {self.id} - {cliente} comprou R${self.valor} em {self.dataCadastro.strftime("%d/%m/%Y às %H:%M")}'
+        return string
     
     # def save(self):
     #     super(Venda, self).save()

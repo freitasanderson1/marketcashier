@@ -70,7 +70,7 @@ async function insertItemVendaLista(data){
     let dados = await response.json();
     
     $('#venda-valor-total').empty();
-    $('#venda-valor-total').text(`${dados.valor.toFixed(2)}`);
+    $('#venda-valor-total').text(`${dados.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`);
 
     dados.itens.forEach(element => {
         if(element.produto.unidadePeso){
@@ -80,10 +80,10 @@ async function insertItemVendaLista(data){
             var unidadePeso = 'KGs'
         }
         $('#produto-valor-unitario').empty();
-        $('#produto-valor-unitario').text(`${element.produto.preco.toFixed(2)}`);
+        $('#produto-valor-unitario').text(`${element.produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`);
 
         $('#produto-valor-total-item').empty();
-        $('#produto-valor-total-item').text(`${element.valorTotal.toFixed(2)}`)
+        $('#produto-valor-total-item').text(`${element.valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`)
 
         $('#listItemVenda').append(`
             <li class="card p-2 mb-1 shadow">
@@ -99,10 +99,10 @@ async function insertItemVendaLista(data){
                     </div>
 
                     <div class="col">
-                        <b>Preço Unitário:</b> <span class="text-success">R$ ${element.produto.preco.toFixed(2)}</span>
+                        <b>Preço Unitário:</b> <span class="text-success">${element.produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
                     </div>
                     <div class="col">
-                        <b>Preço Total:</b> <span class="text-success">R$ ${element.valorTotal.toFixed(2)}</span>
+                        <b>Preço Total:</b> <span class="text-success">${element.valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
                     </div>
                 </div>
             </li>
