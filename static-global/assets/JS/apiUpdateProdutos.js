@@ -25,7 +25,7 @@ function APIupdateProduto(url,data) {
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
         },
         success: function (dados) {
-            console.log(dados)
+            // console.log(dados)
             insertMensagem(dados)
         },
         error: function (retorno) {

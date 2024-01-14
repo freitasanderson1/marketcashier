@@ -13,11 +13,16 @@ $('.nav-link').on('click', function(){
         $(`${target}`).parent().parent().parent().addClass('active show')
     }
     
-    console.log(target)
+    // console.log(target)
 
     if (target == '#pdv'){
         CriarNovaVenda()
     }
+})
+
+$('.btn-remover-item-venda').on('click',function(){
+    // console.log('remover item habilitado')
+    $('.item-venda-option').toggleClass('d-none')
 })
 
 function CriarNovaVenda(){

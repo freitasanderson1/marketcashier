@@ -17,7 +17,7 @@ async function chamarApiItemVenda(codigo){
 
     insertItemVenda(data, $('#produto-quantidade').val())
 
-    console.log(`Resposta: ${data.nome}`)
+    // console.log(`Resposta: ${data.nome}`)
     $('#produto-nome').empty()
     $('#produto-nome').text(data.nome)
 
@@ -51,7 +51,7 @@ async function insertItemVenda(produto,quantidade){
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
         },
         success: function (dados) {
-            console.log(dados)
+            // console.log(dados)
             insertItemVendaLista(dados)
 
         },
@@ -104,47 +104,13 @@ async function insertItemVendaLista(data){
                     <div class="col">
                         <b>Preço Total:</b> <span class="text-success">${element.valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
                     </div>
+                    <div class="item-venda-option d-none col-1 d-flex align-items-center justify-content-around">
+                        <a class="item-venda-remove" data-item="${element.id}">
+                            <i data-item="${element.id}" class="fa-solid fa-square-minus text-danger"></i>
+                        </a>
+                    </div>
                 </div>
             </li>
         `)        
     });
 }
-
-// function insertItemVendaLista(data){
-
-//     if(data.produto.unidadePeso){
-//         var unidadePeso = 'Unidades'
-//     }
-//     else{
-//         var unidadePeso = 'KGs'
-//     }
-//     $('#produto-valor-unitario').empty();
-//     $('#produto-valor-unitario').text(`${data.produto.preco.toFixed(2)}`);
-
-//     $('#produto-valor-total-item').empty();
-//     $('#produto-valor-total-item').text(`${data.valorTotal.toFixed(2)}`)
-
-//     $('#listItemVenda').append(`
-//         <li class="card p-2 m-2 shadow">
-//             <div class="row">
-//                 <div class="col"> 
-//                     <b class="text-success">${data.produto.nome}</b>
-//                 </div>
-//                 <div class="col">
-//                     <b>Código:</b> <span class="text-success">${data.produto.codigo}</span>
-//                 </div>
-//                 <div class="col">
-//                     <b>Quantidade:</b> <span class="text-success">${data.quantidade} ${unidadePeso}</span>
-//                 </div>
-
-//                 <div class="col">
-//                     <b>Preço Unitário:</b> <span class="text-success">R$ ${data.produto.preco.toFixed(2)}</span>
-//                 </div>
-//                 <div class="col">
-//                     <b>Preço Total:</b> <span class="text-success">R$ ${data.valorTotal.toFixed(2)}</span>
-//                 </div>
-//             </div>
-//         </li>
-//     `)        
-    
-// }

@@ -64,7 +64,7 @@ function APIcreateProduto(url,data) {
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
         },
         success: function (dados) {
-            console.log(dados)
+            // console.log(dados)
 
             $('#nomeNovoProduto').val(''),
             $('#codigoNovoProduto').val(''),
