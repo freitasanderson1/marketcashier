@@ -23,6 +23,15 @@ $('.nav-link').on('click', function(){
 $('.btn-remover-item-venda').on('click',function(){
     // console.log('remover item habilitado')
     $('.item-venda-option').toggleClass('d-none')
+
+    $('.item-venda-remove').on('click',function(){
+        var produto = $(this).data('item')
+    
+        // console.log(`Remover Item: ${produto}`)
+    
+        removeItemVenda(produto)
+    })
+    
 })
 
 function CriarNovaVenda(){

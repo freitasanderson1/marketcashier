@@ -10,6 +10,7 @@ $('#produto-codigo').keypress(function(event){
     }
 })
 
+
 async function chamarApiItemVenda(codigo){
 
     let response = await fetch(`api/dados_produtos/${codigo}`);
@@ -62,6 +63,36 @@ async function insertItemVenda(produto,quantidade){
     })
 }
 
+async function removeItemVenda(produto){
+
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+
+    var data = {
+            "produto": produto,
+            "ativo": false
+        }
+
+    var response = $.ajax({
+        url: `api/dados_item_venda/${produto}`,
+        type: 'put',
+        data: data,
+        dataType: "json",
+        accept: "application/json",
+        beforeSend: function (xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        },
+        success: function (dados) {
+            // console.log(dados)
+            insertItemVendaLista(dados)
+
+        },
+        error: function (retorno) {
+            console.log(retorno)
+        },
+
+    })
+}
+
 async function insertItemVendaLista(data){
 
     $('#listItemVenda').empty()
@@ -85,32 +116,32 @@ async function insertItemVendaLista(data){
         $('#produto-valor-total-item').empty();
         $('#produto-valor-total-item').text(`${element.valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`)
 
-        $('#listItemVenda').append(`
-            <li class="card p-2 mb-1 shadow">
-                <div class="row">
-                    <div class="col"> 
-                        <b class="text-success">${element.produto.nome}</b>
-                    </div>
-                    <div class="col">
-                        <b>Código:</b> <span class="text-success">${element.produto.codigo}</span>
-                    </div>
-                    <div class="col">
-                        <b>Quantidade:</b> <span class="text-success">${element.quantidade} ${unidadePeso}</span>
-                    </div>
+        if(element.ativo){
+            $('#listItemVenda').append(`
+                <li class="card p-2 mb-1 shadow">
+                    <div class="row">
+                        <div class="col"> 
+                            <b class="text-success">${element.produto.nome}</b>
+                        </div>
+                        <div class="col">
+                            <b>Código:</b> <span class="text-success">${element.produto.codigo}</span>
+                        </div>
+                        <div class="col">
+                            <b>Quantidade:</b> <span class="text-success">${element.quantidade} ${unidadePeso}</span>
+                        </div>
 
-                    <div class="col">
-                        <b>Preço Unitário:</b> <span class="text-success">${element.produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
+                        <div class="col">
+                            <b>Preço Unitário:</b> <span class="text-success">${element.produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
+                        </div>
+                        <div class="col">
+                            <b>Preço Total:</b> <span class="text-success">${element.valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
+                        </div>
+                        <div class="item-venda-option item-venda-remove d-none col-1 d-flex align-items-center justify-content-around" data-item="${element.id}" style="cursor: pointer;">   
+                            <i class="fa-solid fa-square-minus text-danger"></i>
+                        </div>
                     </div>
-                    <div class="col">
-                        <b>Preço Total:</b> <span class="text-success">${element.valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
-                    </div>
-                    <div class="item-venda-option d-none col-1 d-flex align-items-center justify-content-around">
-                        <a class="item-venda-remove" data-item="${element.id}">
-                            <i data-item="${element.id}" class="fa-solid fa-square-minus text-danger"></i>
-                        </a>
-                    </div>
-                </div>
-            </li>
-        `)        
+                </li>
+            `)
+        }        
     });
 }

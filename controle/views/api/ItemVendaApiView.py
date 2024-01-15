@@ -49,7 +49,7 @@ class ItemVendaApiView(viewsets.ModelViewSet):
             try:
                 queryset = ItemVenda.objects.filter(venda__id=pk)
                 ItemVenda_serialized = ItemVendaSerializer(queryset, many=True)
-                soma = float(sum(item.valorTotal for item in queryset))
+                soma = float(sum(item.valorTotal for item in queryset.filter(ativo=True)))
                 # print(f'Soma: {soma}')
                 
                 venda = Venda.objects.get(id=pk)
@@ -71,5 +71,34 @@ class ItemVendaApiView(viewsets.ModelViewSet):
             responseData = {'mensagem': 'A API não recebeu os parâmetros necessários.'}
             status=412     
                                                                                                                                                                                           
+        return Response(responseData,status=status)
+    
+    def update(self, request, *args, **kwargs):
+        pk = kwargs.get('pk')
+
+        # print(f'Kwargs: {kwargs}')
+        
+        if pk:
+            try:
+                itemVenda = ItemVenda.objects.get(id=pk)
+                itemVenda.ativo = False
+
+                itemVenda.save()
+
+                # print(itemVenda, itemVenda.venda.id)
+
+                responseData = {
+                    'mensagem': 'O Item foi removido.',
+                    'venda': itemVenda.venda.id,
+                }
+
+                status=200
+            except:
+                responseData = {'mensagem': 'O ID do ItemVenda não existe.'}
+                status=400
+        else:
+            responseData = {'mensagem': 'A API não recebeu os parâmetros necessários.'}
+            status=412     
+
         return Response(responseData,status=status)
     

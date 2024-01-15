@@ -73,13 +73,19 @@
         </div>
     </div>
 
+    {% include "modais/modalSelectCliente.html" %}
+
     <div class="d-flex justify-content-evenly pb-4">
         <div class="card shadow rounded-4 text-black mb-4" style="min-height: 7.5rem; width:30vw;">
             <div class="card-body align-items-center d-flex justify-content-center">
-                <p id="produto-nome" class="text-start mb-0" style="font-size: 30px;"></p> 
+                <input type="hidden" name="client-comprando-id" id="client-comprando-id" value="">
+                <input type="hidden" name="client-comprando-nome" id="client-comprando-nome" value="">
+                <input type="hidden" name="client-comprando-cpf" id="client-comprando-cpf" value="">
+
+                <p id="cliente-nome" class="text-start mb-0" style="font-size: 30px;"></p> 
             </div>
         </div>
-        <div class="btn-selecionar-cliente-venda card shadow rounded-4 bg-success text-white mb-4" style="width:18vw; min-height: 5.5rem;">
+        <div class="btn-selecionar-cliente-venda card shadow rounded-4 bg-success text-white mb-4" data-bs-toggle="modal" data-bs-target="#modalSelectCliente" style="width:18vw; min-height: 5.5rem;">
             <div class="card-body d-flex flex-column justify-content-center">
                 <h6 class="text-center" style="font-size: 26px; margin-bottom: 0px;">Selecionar Cliente</h6>
             </div>

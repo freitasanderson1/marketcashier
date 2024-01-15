@@ -1,0 +1,32 @@
+<!-- Novo Cliente Modal -->
+<div class="modal fade" id="modalSelectCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalSelectClienteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalSelectClienteLabel">Selecionar Cliente</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex flex-column">
+            {% csrf_token %}
+
+            <div class="d-flex flex-column mb-1">
+                <label class="form-label fs-4" for="termoCliente">Pesquise pelo CPF ou Nome</label>
+                <input class="form-control" type="text" name="termoCliente" id="termoCliente" value="">
+                <hr>
+
+                <label class="form-label fs-4" for="termoCliente">Resultado</label>
+                <ul id="listSelecionarCliente" style="list-style-type: none; padding-left: 0px;">
+                    
+                </ul>
+            </div>
+           
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+    </div>
+    </div>
+</div>
+
+            
+          
