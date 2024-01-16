@@ -16,6 +16,8 @@ $('.nav-link').on('click', function(){
     // console.log(target)
 
     if (target == '#pdv'){
+        $('.segunda-Logo').addClass('d-none')
+        $('#main').addClass('d-none')
         CriarNovaVenda()
     }
 })

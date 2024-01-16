@@ -1,3 +1,14 @@
+$('.btn-finalizar-venda').on('click', function(){
+
+    var temClienteSelecionado = $('#client-comprando-id').val()
+
+    // console.log(`Valor: ${temClienteSelecionado}`)
+
+    if (temClienteSelecionado){
+        $('.btn-venda-fiado').removeClass('d-none')
+    }
+})
+
 $('.btn-venda-fiado').on('click',function(){
     // console.log('remover item habilitado')
     var clienteId = $('#client-comprando-id').val()
