@@ -64,7 +64,7 @@
             <div style="">
                 <div class="card bg-success shadow rounded-4 text-white mt-5 mb-4" style="min-height: 10rem;">
                     <div class="card-body d-flex flex-column justify-content-center">
-                        <h6 class="text-center" style="font-size: 24px; margin-bottom: 0px;">Valor Total:</h6>
+                        <h6 class="text-center" style="font-size: 24px; margin-bottom: 0px;"><i class="fa-solid text-white fa-cart-shopping"></i> Valor Total:</h6>
                         <p class="text-center mb-0" style="font-size: 36px;"><span id="venda-valor-total">R$ 0,00 </span></p>
                     </div>
                 </div>
@@ -74,6 +74,7 @@
     </div>
 
     {% include "modais/modalSelectCliente.html" %}
+    {% include "modais/modalFinalizarVenda.html" %}
 
     <div class="d-flex justify-content-evenly pb-4">
         <div class="card shadow rounded-4 text-black mb-4" style="min-height: 7.5rem; width:30vw;">
@@ -87,19 +88,19 @@
         </div>
         <div class="btn-selecionar-cliente-venda card shadow rounded-4 bg-success text-white mb-4" data-bs-toggle="modal" data-bs-target="#modalSelectCliente" style="width:18vw; min-height: 5.5rem;">
             <div class="card-body d-flex flex-column justify-content-center">
-                <h6 class="text-center" style="font-size: 26px; margin-bottom: 0px;">Selecionar Cliente</h6>
+                <h6 class="text-center" style="font-size: 26px; margin-bottom: 0px;"><i class="fa-solid text-white fa-list-ul"></i> Selecionar Cliente</h6>
             </div>
         </div>
 
         <div class="btn-remover-item-venda card shadow rounded-4 bg-primary text-white mb-4" style="width:18vw; min-height: 5.5rem;">
             <div class="card-body d-flex flex-column justify-content-center">
-                <h6 class="text-center" style="font-size: 26px; margin-bottom: 0px;">Remover Produto</h6>
+                <h6 class="text-center" style="font-size: 26px; margin-bottom: 0px;"><i class="fa-solid text-white fa-trash"></i> Remover Produto</h6>
             </div>
         </div>
 
-        <div class="btn-finalizar-venda card shadow rounded-4 bg-danger text-white mb-4" style="width:18vw; min-height: 5.5rem;">
+        <div class="btn-finalizar-venda card shadow rounded-4 bg-danger text-white mb-4"  data-bs-toggle="modal" data-bs-target="#modalFinalizarVenda" style="width:18vw; min-height: 5.5rem;">
             <div class="card-body d-flex flex-column justify-content-center">
-                <h6 class="text-center" style="font-size: 26px; margin-bottom: 0px;">Finalizar Compra</h6>
+                <h6 class="text-center" style="font-size: 26px; margin-bottom: 0px;"><i class="fa-solid text-white fa-sack-dollar"></i> Finalizar Compra</h6>
             </div>
         </div>
     </div>

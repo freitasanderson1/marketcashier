@@ -54,6 +54,7 @@ function insertprodutos(data){
                             data-ms-preco="${element.preco}"
                             data-ms-unidadepeso="${element.unidadePeso}"
                             data-bs-toggle="modal" data-bs-target="#modalEditProduct">
+                            <i class="fa-solid fa-pen-to-square"></i>
                             Editar
                         </button>
                     </div>

@@ -35,7 +35,8 @@ async function chamarApiSelecionarCliete(termo){
                 class="btn btn-success btn-select-cliente" 
                 data-ms-id="${element.id}" 
                 data-ms-nome="${element.nomeCompleto}" 
-                data-ms-cpf="${element.cpf}"> 
+                data-ms-cpf="${element.cpf}"
+                data-bs-dismiss="modal"> 
                 Selecionar
               </button>
             </div>
@@ -45,9 +46,9 @@ async function chamarApiSelecionarCliete(termo){
 
    $('.btn-select-cliente').on('click', function(){
     $('#cliente-nome').text($(this).data('ms-nome'))
-    $('#client-comprando-id').text($(this).data('ms-id'))
-    $('#client-comprando-nome').text($(this).data('ms-nome'))
-    $('#client-comprando-cpf').text($(this).data('ms-cpf'))
+    $('#client-comprando-id').val($(this).data('ms-id'))
+    $('#client-comprando-nome').val($(this).data('ms-nome'))
+    $('#client-comprando-cpf').val($(this).data('ms-cpf'))
   })
     
   });
