@@ -26,6 +26,6 @@ class ItemVenda(models.Model):
     
     def save(self):
 
-        self.valorTotal = self.produto.preco * self.quantidade
+        self.valorTotal = round((self.produto.preco * self.quantidade), 2)
 
         super(ItemVenda, self).save()

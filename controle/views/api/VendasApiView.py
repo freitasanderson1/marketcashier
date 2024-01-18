@@ -20,9 +20,9 @@ class VendasApiView(viewsets.ModelViewSet):
         if pk:
             try:
                 venda = Venda.objects.get(id=pk)
-                venda.cliente = Cliente.objects.get(id=request.data.get('cliente'))
+                venda.cliente = Cliente.objects.get(id=request.data.get('cliente')) if request.data.get('cliente') else None
                 venda.finalizado = True
-                venda.pago = True if request.data['pago'] else False
+                venda.pago = True if request.data.get('pago') else False
                 venda.save()
 
                 # print(Venda, Venda.venda.id)

@@ -39,16 +39,16 @@ class Venda(models.Model):
         
     #     produtos = self.itens.filter(ativo=True).values('valorTotal')
         
-    #     listaValores = list()
-
-    #     [listaValores.append(float(valor['valorTotal'])) for valor in produtos]
-
-    #     # print(listaValores)
-
     #     if produtos:
+    #         listaValores = list()
+
+    #         [listaValores.append(float(valor['valorTotal'])) for valor in produtos]
+
+    #         # print(listaValores)
+
     #         self.valor = sum(listaValores)
 
-    #     self.finalizarVenda()
+    #         self.finalizarVenda()
 
     #     super(Venda, self).save()
 

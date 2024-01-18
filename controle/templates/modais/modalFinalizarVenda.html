@@ -16,13 +16,13 @@
             <div class="d-flex justify-content-evenly mb-1">
                 <div class="btn-venda-fiado d-none card shadow rounded-4 bg-success text-white mb-4" style="min-height: 10.5rem;">
                     <div class="card-body d-flex flex-column justify-content-center">
-                        <h6 class="text-center" style="font-size: 26px; margin-bottom: 0px;">Salvar na Conta do Cliente</h6>
+                        <h6 class="text-center" style="font-size: 26px; margin-bottom: 0px;"><i class="fa-solid fa-receipt"></i> Salvar na Conta do Cliente</h6>
                     </div>
                 </div>
         
                 <div class="btn-venda-avista clickable card shadow rounded-4 bg-primary text-white mb-4" style="min-height: 10.5rem;">
                     <div class="card-body d-flex flex-column justify-content-center">
-                            <h6 class="text-center" style="font-size: 26px; margin-bottom: 0px;">Pagamento à vista</h6>
+                            <h6 class="text-center" style="font-size: 26px; margin-bottom: 0px;"><i class="fa-solid fa-sack-dollar"></i> Pagamento à vista</h6>
                     </div>
                 </div>
             </div>
@@ -31,44 +31,44 @@
 
                 <div class="d-flex justify-content-evenly mb-3">
                     <div class="bg-success p-4 text-white text-center w-25 rounded-4">
-                        <p class="fs-3">Valor Total</p>
+                        <p class="fs-3"><i class="fa-solid fa-cart-shopping"></i> Valor Total</p>
                         <p class="text-center fs-4 mb-0">R$ <span id="valor-total-compra"></span></p> 
                     </div>
                 
                     <div class="bg-warning p-4 text-white text-center w-25 rounded-4">
-                        <p class="fs-3">Troco</p>
+                        <p class="fs-3"><i class="fa-solid fa-coins"></i> Troco</p>
                         <p class="text-center fs-4 mb-0">R$ <span id="troco-compra">0,00</span></p> 
                     </div>
                     
                     <div class="bg-warning p-4 text-white text-center w-25 rounded-4">
-                        <p class="fs-3">Restando</p>
+                        <p class="fs-3"><i class="fa-solid fa-money-bill-wave"></i> Restando</p>
                         <p class="text-center fs-4 mb-0">R$ <span id="restando-compra">0,00</span></p> 
                     </div>
                 </div>
 
 
                 <div class="bg-primary p-4 w-50 mx-auto text-white text-center rounded-4">
-                    <p class="fs-3">Valor Pago</p>
+                    <p class="fs-3"><i class="fa-solid fa-hand-holding-dollar"></i> Valor Pago</p>
                     <input type="number" id="valor-pago-compra" class="text-center form-control  fs-4 mb-0" step="0.01"></input> 
                 </div>
 
             </div>
 
             
-            <div class="btn-venda-avista-finalizada d-none card shadow rounded-4 bg-primary text-white my-4" style="min-height: 4.5rem;">
+            <div class="btn-venda-avista-finalizada d-none card shadow rounded-4 bg-success text-white my-4" style="min-height: 4.5rem;">
                 <div class="card-body d-flex flex-column justify-content-center">
-                    <h6 class="text-center" style="font-size: 26px; margin-bottom: 0px;">Finalizar Venda</h6>
+                    <h6 class="text-center" style="font-size: 26px; margin-bottom: 0px;"><i class="fa-solid fa-check"></i> Marcar Venda Paga</h6>
                 </div>
             </div>
 
             <div class="btn-reload-pag d-none card shadow rounded-4 bg-primary text-white mb-4" onClick="window.location.reload()" style="min-height: 4.5rem;">
                 <div class="card-body d-flex flex-column justify-content-center">
-                    <h6 class="text-center" style="font-size: 26px; margin-bottom: 0px;">Nova Venda</h6>
+                    <h6 class="text-center" style="font-size: 26px; margin-bottom: 0px;"><i class="fa-solid fa-cart-plus"></i> Nova Venda</h6>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            {% comment %} <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button> {% endcomment %}
         </div>
     </div>
     </div>

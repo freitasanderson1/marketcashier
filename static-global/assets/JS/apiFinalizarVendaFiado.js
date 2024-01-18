@@ -19,10 +19,11 @@ $('.btn-venda-fiado').on('click',function(){
 })
 
 $('.btn-venda-avista-finalizada').on('click',function(){
+    var clienteId = $('#client-comprando-id').val()
     
     var vendaId = $('#IdVenda').val()
 
-    finalizarVendaAvista(vendaId)
+    finalizarVendaAvista(clienteId, vendaId)
     
 })
 
@@ -33,7 +34,7 @@ $('.btn-venda-avista').on('click', function(){
 
     // console.log(valorNumerico)
 
-    $('#valor-total-compra').text(`${valorTotal}`)
+    $('#valor-total-compra').text(`${parseFloat(valorTotal).toFixed(2)}`)
 
     $('#div-troco').toggleClass('d-none')
 })
@@ -101,11 +102,12 @@ async function finalizarVendaFiado(cliente,venda){
     })
 }
 
-async function finalizarVendaAvista(venda){
+async function finalizarVendaAvista(cliente, venda){
 
     var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
 
     var data = {
+            "cliente": cliente,
             "pago": true,
         }
 
