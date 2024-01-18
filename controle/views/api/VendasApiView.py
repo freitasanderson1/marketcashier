@@ -14,14 +14,15 @@ class VendasApiView(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         pk = kwargs.get('pk')
 
-        # print(f'Kwargs: {kwargs}')
-        # print(f'Request: {request.data}')
+        print(f'Kwargs: {kwargs}')
+        print(f'Request: {request.data}')
         
         if pk:
             try:
                 venda = Venda.objects.get(id=pk)
                 venda.cliente = Cliente.objects.get(id=request.data.get('cliente'))
                 venda.finalizado = True
+                venda.pago = True if request.data['pago'] else False
                 venda.save()
 
                 # print(Venda, Venda.venda.id)

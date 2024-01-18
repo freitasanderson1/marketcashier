@@ -102,6 +102,8 @@ async function insertItemVendaLista(data){
     
     $('#venda-valor-total').empty();
     $('#venda-valor-total').text(`${dados.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`);
+    $('#venda-valor-total-input').val(`${dados.valor}`);
+    
 
     dados.itens.forEach(element => {
         if(element.produto.unidadePeso){

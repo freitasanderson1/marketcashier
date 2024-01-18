@@ -18,6 +18,59 @@ $('.btn-venda-fiado').on('click',function(){
     
 })
 
+$('.btn-venda-avista-finalizada').on('click',function(){
+    
+    var vendaId = $('#IdVenda').val()
+
+    finalizarVendaAvista(vendaId)
+    
+})
+
+$('.btn-venda-avista').on('click', function(){
+    var valorTotal = $('#venda-valor-total-input').val()
+
+    // var valorNumerico = valorTotal.slice(3,valorTotal.length)
+
+    // console.log(valorNumerico)
+
+    $('#valor-total-compra').text(`${valorTotal}`)
+
+    $('#div-troco').toggleClass('d-none')
+})
+
+$('#valor-pago-compra').on('input',  function(){
+    console.log('Inserindo', parseFloat($('#valor-total-compra').text()).toFixed(2))
+    
+    var troco =  parseFloat($(this).val()).toFixed(2) - parseFloat($('#venda-valor-total-input').val()).toFixed(2)
+    
+    console.log(troco.toFixed(2))
+    if (troco.toFixed(2) >= 0.00){
+        $('#troco-compra').empty()
+        
+        $('#troco-compra').text(troco.toFixed(2))
+
+        $('#restando-compra').empty()
+        
+        $('#restando-compra').text('0,00')
+
+        $('.btn-venda-avista-finalizada').removeClass('d-none')
+    }
+    else{
+        
+        $('#restando-compra').empty()
+        
+        $('#restando-compra').text(troco.toFixed(2))
+
+        $('#troco-compra').empty()
+        
+        $('#troco-compra').text('0,00')
+
+        $('.btn-venda-avista-finalizada').addClass('d-none')
+
+    }
+
+})
+
 async function finalizarVendaFiado(cliente,venda){
 
     var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
@@ -37,7 +90,36 @@ async function finalizarVendaFiado(cliente,venda){
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
         },
         success: function (dados) {
-            console.log(dados)
+            // console.log(dados)
+            insertMensagemFinalizar(dados.mensagem)
+
+        },
+        error: function (retorno) {
+            console.log(retorno)
+        },
+
+    })
+}
+
+async function finalizarVendaAvista(venda){
+
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+
+    var data = {
+            "pago": true,
+        }
+
+    var response = $.ajax({
+        url: `api/dados_vendas/${venda}`,
+        type: 'put',
+        data: data,
+        dataType: "json",
+        accept: "application/json",
+        beforeSend: function (xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        },
+        success: function (dados) {
+            // console.log(dados)
             insertMensagemFinalizar(dados.mensagem)
 
         },

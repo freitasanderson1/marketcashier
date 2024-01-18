@@ -1,3 +1,3 @@
-.btn-remover-item-venda, .btn-selecionar-cliente-venda, .btn-finalizar-venda, .btn-venda-fiado, .btn-reload-pag, .clickable{
+.btn-remover-item-venda:hover, .btn-selecionar-cliente-venda:hover, .btn-finalizar-venda:hover, .btn-venda-fiado:hover, .btn-reload-pag:hover, .clickable:hover{
     cursor: pointer;
 }
