@@ -3,10 +3,10 @@
 Postgresql 15 (Compose) + Django 5.0 + Python 3.12
 
 - Vendas
-- Cadastrar cliente
-- Usuários
+- Cadastrar cliente - OK
+- Usuários - OK
 - Caixa
-- Controle de estoque
+- Controle de estoque - OK
 
 
 Criar Baseview herdando variável NEXT por contexto:
