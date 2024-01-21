@@ -4,7 +4,7 @@ $('.nav-link').on('click', function(){
     
     $('.nav-link, .active').removeClass('active')
 
-    $('.active, .inside-tab, .show').removeClass('active show')
+    $('.menu-tab').removeClass('active show')
 
     $(this).addClass('active')
 
@@ -20,6 +20,26 @@ $('.nav-link').on('click', function(){
         $('#main').addClass('d-none')
         CriarNovaVenda()
     }
+})
+
+$('.btn-venda-avista').on('click', function(){
+
+    $('.finish-tab').addClass('d-none')
+    $('#div-troco').removeClass('d-none')
+
+})
+
+$('.btn-venda-fiado').on('click', function(){
+    $('.finish-tab').addClass('d-none')
+    $('#finish-pay').removeClass('d-none')
+
+})
+
+$('.btn-venda-avista-finalizada').on('click', function(){
+
+    $('#div-troco').addClass('d-none')
+    $('#finish-pay').removeClass('d-none')
+
 })
 
 $('.btn-remover-item-venda').on('click',function(){

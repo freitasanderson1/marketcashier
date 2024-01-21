@@ -36,7 +36,6 @@ $('.btn-venda-avista').on('click', function(){
 
     $('#valor-total-compra').text(`${parseFloat(valorTotal).toFixed(2)}`)
 
-    $('#div-troco').toggleClass('d-none')
 })
 
 $('#valor-pago-compra').on('input',  function(){
