@@ -1,20 +1,34 @@
 $('#listarClientes').on('click', function(){
-    chamarApiCliente()
+    $('#termoListCliente').val('')
+    chamarApiCliente('')
 });
 
 $( document ).ready(function() {
-    chamarApiCliente()
+    chamarApiCliente('')
 });
+$('#termoListCliente').on('input', function(){
+    var termo = $(this).val()
+  
+    // console.log(termo.length,termo)
+  
+    if (termo.length > 3){
+      chamarApiCliente(termo)
+    }
+})
 
-async function chamarApiCliente(){
-
-    let response = await fetch('api/dados_clientes');
+async function chamarApiCliente(termo){
+    if (termo){
+        var response = await fetch(`api/dados_clientes/${termo}`);
+    }
+    else{
+        var response = await fetch(`api/dados_clientes`);   
+    }
     let data = await response.json();
 
     // console.log(`Index: ${Object.getOwnPropertyNames(data)}`);
-    // console.log(`Dados: ${data[0].nomeCompleto}`)
+    // console.log(`Dados: ${data.clientes}`)
     
-    insertClientes(data)
+    termo ? insertClientes(data.clientes) : insertClientes(data)
 }
 
 function insertClientes(data){
@@ -40,7 +54,16 @@ function insertClientes(data){
                     <div class="col">
                         <b>Endereço:</b> <span class="text-success">${element.endereco}</span>
                     </div>
-
+                    <div class="col-2 d-flex justify-content-end">
+                        <button type="button" class="btn btn-success btn-cliente-conta" 
+                            data-ms-id="${element.id}" 
+                            data-ms-nome="${element.cpf}" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#modalContaCliente">
+                            <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                            Conta
+                        </button>
+                    </div>
                 </div>
             </li>
         `)

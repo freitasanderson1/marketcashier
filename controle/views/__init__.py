@@ -1,6 +1,7 @@
 from controle.views.IndexMarket import IndexMarket
 
 from controle.views.GetProductNameView import GetProductNameView
+from controle.views.GetContaClienteView import GetContaClienteView
 
 ####### API ##########
 from controle.views.api.VendasApiView import VendasApiView ### Todas as vendas

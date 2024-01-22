@@ -3,13 +3,18 @@
 {% block containerOption %}
     <div class="d-flex justify-content-start">
 
-        <a class="clickable bg-success p-2 mx-2 rounded-4 text-white text-center" id="listarClientes" style="text-decoration: none; width: 12rem;">
-            <span class="text-center" style="font-size: 20px;" class="text-white"><i class="fa-solid fa-users"></i> Listar Clientes</span> 
+        <a class="clickable bg-success p-2 mx-2 rounded-4 text-white text-center" id="listarClientes" style="text-decoration: none; width: 18rem;">
+            <span class="text-center" style="font-size: 20px;" class="text-white"><i class="fa-solid fa-users"></i> Exibir todos Clientes</span> 
         </a>
 
         <a class="clickable bg-success p-2 mx-2 rounded-4 text-white text-center" id="novoCliente" style="text-decoration: none; width: 12rem;" data-bs-toggle="modal" data-bs-target="#modalCreateCliente">
             <span class="text-center" style="font-size: 20px;" class="text-white"><i class="fa-solid fa-user-plus"></i> Novo Cliente</span> 
         </a>
+    </div>
+
+    <div class="mt-2" style="padding-left:32px;">
+        <label class="form-label fs-4" for="termoListCliente">Pesquise pelo CPF ou Nome</label>
+        <input class="form-control" type="text" name="termoListCliente" id="termoListCliente" value="">
     </div>
 
     {% include "modais/modalCreateCliente.html" %}
