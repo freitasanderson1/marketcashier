@@ -14,8 +14,8 @@ class VendasApiView(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         pk = kwargs.get('pk')
 
-        print(f'Kwargs: {kwargs}')
-        print(f'Request: {request.data}')
+        # print(f'Kwargs: {kwargs}')
+        # print(f'Request: {request.data}')
         
         if pk:
             try:

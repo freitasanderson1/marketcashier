@@ -75,7 +75,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 LOGIN_URL = '/login/'
 
-TIME_ZONE = 'America/Sao_Paulo'
+TIME_ZONE = 'America/Araguaina'
 
 DATE_FORMAT = '%d/%m/%Y'
 

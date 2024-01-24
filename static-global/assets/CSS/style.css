@@ -1,3 +1,7 @@
 .btn-remover-item-venda:hover, .btn-selecionar-cliente-venda:hover, .btn-finalizar-venda:hover, .btn-venda-fiado:hover, .btn-reload-pag:hover, .clickable:hover{
     cursor: pointer;
 }
+
+.list-api{
+    list-style-type: none;
+}
