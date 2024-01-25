@@ -11,7 +11,7 @@ class ItemVendaInline(admin.TabularInline):
 @admin.register(Venda)
 class VendaAdmin(admin.ModelAdmin):
     search_fields = ['cliente__nomeCompleto']
-    list_display = ('id', 'cliente','vendedor','valor','dataCadastro', 'finalizado','pago','ativo')
+    list_display = ('id', 'cliente','vendedor','valor','dataCadastro', 'finalizado','check_pago','ativo')
     inlines = [
         ItemVendaInline    
     ]

@@ -25,6 +25,7 @@ $('.nav-link').on('click', function(){
 $('.btn-venda-avista').on('click', function(){
 
     $('.finish-tab').addClass('d-none')
+    
     $('#div-troco').removeClass('d-none')
 
 })

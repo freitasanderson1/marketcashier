@@ -16,6 +16,18 @@ $('#termoListCliente').on('input', function(){
     }
 })
 
+$("input:radio[name='tipoPagamentoConta']").on('click',function(){
+
+    // console.log($('input[name=tipoPagamentoConta]:checked').val())
+
+    $('#tipoPagamentoContaSelecionado').val($('input[name=tipoPagamentoConta]:checked').val())
+
+    if($("input:radio[name='tipoPagamentoConta']").is(":checked")) {
+        $('.abater-conta-cliente-div').removeClass('d-none')
+    }
+
+})
+
 async function chamarApiCliente(termo){
     if (termo){
         var response = await fetch(`api/dados_clientes/${termo}`);
@@ -94,8 +106,8 @@ async function chamarApiClienteConta(cpf){
     $('#contaClienteCpf').val(data.cpf)
     $('#contaClienteDebito').val(`R$ ${data.debito.toFixed(2)}`)
 
-    console.log(`Index: ${Object.getOwnPropertyNames(data.vendas)}`);
-    console.log(`Dados: ${data.vendas}`)
+    // console.log(`Index: ${Object.getOwnPropertyNames(data.vendas)}`);
+    // console.log(`Dados: ${data.vendas}`)
 
     $('#contaClienteCompras ').empty()
 
@@ -115,12 +127,15 @@ async function chamarApiClienteConta(cpf){
     $('.btn-abater-valor').on('click', function(){
         var valor = $('#valorAbaterConta').val()
 
+        var pagamentoSelecionado = $('#tipoPagamentoContaSelecionado').val()
+
         if (valor){
 
             console.log(valor)
 
             var data = {
                 'valor': valor,
+                'tipo': pagamentoSelecionado
             }
             var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
             

@@ -38,14 +38,49 @@
                 </span>
             </button>
             
-            <div class="contaClienteAbaterValor d-flex d-none">
-                <input class="form-control w-75 shadow border-3" type="number" name="valorAbaterConta" id="valorAbaterConta" step="0.01">
-                <button class="btn btn-success btn-abater-valor shadow rounded-3 mx-auto bg-success text-white mb-4">
-                    <span class="text-center" style="font-size: 22px; margin-bottom: 0px;">
-                        <i class="fa-solid text-white fa-sack-dollar"></i> 
-                        Pagar
-                    </span>
-                </button>
+            <div class="contaClienteAbaterValor d-none">
+                <div class="tipoPagamentoConta mb-4 d-flex justify-content-center">
+                    <input type="hidden" id="tipoPagamentoContaSelecionado" name="tipoPagamentoContaSelecionado">
+                    
+                    <div class="form-check form-check-inline text-white bg-success px-5 py-2 rounded-3">
+                        <input class="form-check-input" type="radio" name="tipoPagamentoConta" value="1" id="tipoPagamentoConta1">
+                        <label class="form-check-label fs-6" for="tipoPagamentoConta1">
+                            Dinheiro
+                        </label>
+                    </div>
+
+                    <div class="form-check form-check-inline text-white bg-success px-5 py-2 rounded-3">
+                        <input class="form-check-input" type="radio" name="tipoPagamentoConta" value="2" id="tipoPagamentoConta2">
+                        <label class="form-check-label fs-6" for="tipoPagamentoConta2">
+                            Pix
+                        </label>
+                    </div>
+                    
+                    <div class="form-check form-check-inline text-white bg-success px-5 py-2 rounded-3">
+                        <input class="form-check-input" type="radio" name="tipoPagamentoConta" value="3" id="tipoPagamentoConta3">
+                        <label class="form-check-label fs-6" for="tipoPagamentoConta3">
+                            Débito
+                        </label>
+                    </div>
+                    
+                    <div class="form-check form-check-inline text-white bg-success px-5 py-2 rounded-3">
+                        <input class="form-check-input" type="radio" name="tipoPagamentoConta" value="4" id="tipoPagamentoConta4">
+                        <label class="form-check-label fs-6" for="tipoPagamentoConta4">
+                            Crédito
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="abater-conta-cliente-div d-flex d-none">
+
+                    <input class="form-control w-75 shadow border-3" type="number" name="valorAbaterConta" id="valorAbaterConta" step="0.01">
+                    <button class="btn btn-success btn-abater-valor shadow rounded-3 mx-auto bg-success text-white mb-4">
+                        <span class="text-center" style="font-size: 22px; margin-bottom: 0px;">
+                            <i class="fa-solid text-white fa-sack-dollar"></i> 
+                            Pagar
+                        </span>
+                    </button>
+                </div>
             </div>
 
             <h5>Vendas</h5>

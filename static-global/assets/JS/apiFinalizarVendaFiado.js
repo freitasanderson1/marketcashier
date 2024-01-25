@@ -27,6 +27,16 @@ $('.btn-venda-avista-finalizada').on('click',function(){
     
 })
 
+$('.btn-venda-avista-finalizada-parcialmente').on('click',function(){
+    var clienteId = $('#client-comprando-id').val()
+    
+    var vendaId = $('#IdVenda').val()
+    var valor = $('#valor-pago-compra').val()
+
+    finalizarVendaParcialmente(clienteId, vendaId,valor)
+    
+})
+
 $('.btn-venda-avista').on('click', function(){
     var valorTotal = $('#venda-valor-total-input').val()
 
@@ -38,12 +48,23 @@ $('.btn-venda-avista').on('click', function(){
 
 })
 
+$("input:radio[name='tipoPagamento']").on('click',function(){
+
+    // console.log($('input[name=tipoPagamento]:checked').val())
+
+    $('#tipoPagamentoSelecionado').val($('input[name=tipoPagamento]:checked').val())
+
+    if($("input:radio[name='tipoPagamento']").is(":checked")) {
+        $('.func-pagar').removeClass('d-none')
+    }
+})
+
 $('#valor-pago-compra').on('input',  function(){
     console.log('Inserindo', parseFloat($('#valor-total-compra').text()).toFixed(2))
     
     var troco =  parseFloat($(this).val()).toFixed(2) - parseFloat($('#venda-valor-total-input').val()).toFixed(2)
     
-    console.log(troco.toFixed(2))
+    // console.log(troco.toFixed(2))
     if (troco.toFixed(2) >= 0.00){
         $('#troco-compra').empty()
         
@@ -54,6 +75,8 @@ $('#valor-pago-compra').on('input',  function(){
         $('#restando-compra').text('0,00')
 
         $('.btn-venda-avista-finalizada').removeClass('d-none')
+
+        
     }
     else{
         
@@ -66,6 +89,14 @@ $('#valor-pago-compra').on('input',  function(){
         $('#troco-compra').text('0,00')
 
         $('.btn-venda-avista-finalizada').addClass('d-none')
+
+        var temClienteSelecionado = $('#client-comprando-id').val()
+
+        console.log(`Valor: ${temClienteSelecionado}`)
+
+        if (temClienteSelecionado){
+            $('.btn-venda-avista-finalizada-parcialmente').removeClass('d-none')
+        }
 
     }
 
@@ -100,14 +131,48 @@ async function finalizarVendaFiado(cliente,venda){
 
     })
 }
+async function finalizarVendaParcialmente(cliente, venda, valor){
+    var pagamentoSelecionado = $('#tipoPagamentoSelecionado').val()
+
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+
+    var data = {
+            "cliente": cliente,
+            "pago": false,
+            "valor": valor,
+            "tipo": pagamentoSelecionado,
+        }
+
+    var response = $.ajax({
+        url: `api/dados_vendas/${venda}`,
+        type: 'put',
+        data: data,
+        dataType: "json",
+        accept: "application/json",
+        beforeSend: function (xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        },
+        success: function (dados) {
+            // console.log(dados)
+            insertMensagemFinalizar(dados.mensagem)
+
+        },
+        error: function (retorno) {
+            console.log(retorno)
+        },
+
+    })
+}
 
 async function finalizarVendaAvista(cliente, venda){
+    var pagamentoSelecionado = $('#tipoPagamentoSelecionado').val()
 
     var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
 
     var data = {
             "cliente": cliente,
             "pago": true,
+            "tipo": pagamentoSelecionado,
         }
 
     var response = $.ajax({

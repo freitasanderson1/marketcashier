@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from cadastro.models import Cliente
+from controle.models import Pagamento
 
 
 class Venda(models.Model):
@@ -20,7 +21,7 @@ class Venda(models.Model):
 
     finalizado = models.BooleanField(verbose_name=u'Finalizado?', default=False, editable=True)
     
-    pago = models.BooleanField(verbose_name=u'Pago?', default=False, editable=True)
+    pagamento = models.ForeignKey(Pagamento, verbose_name=u'Pagamento', null=True, on_delete=models.SET_NULL)
     
     ativo = models.BooleanField(verbose_name=u'Ativo?', default=True, editable=True)
 
@@ -52,7 +53,12 @@ class Venda(models.Model):
 
     #     super(Venda, self).save()
 
-    
+    def check_pago(self):
+        if self.pagamento and self.valor == self.pagamento.valor:
+            return True
+        else:
+            return False
+
     def finalizarVenda(self):
 
         itens = self.itens.filter(ativo=True)
