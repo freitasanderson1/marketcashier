@@ -1,12 +1,24 @@
 version: '3.8'
 
 services:
+  djangoapp:
+    container_name: marketcashier
+    build:
+      context: .
+    ports:
+      - 1404:1404
+    volumes:
+      - .:/app
+    depends_on:
+      - db
   db:
     image: postgres:15
     environment:
       - POSTGRES_USER=anderson
       - POSTGRES_PASSWORD=password123
       - POSTGRES_DB=marketcashier
+      - POSTGRES_PORT="5432"
+      - POSTGRES_HOST="db"
     ports:
       - "5432:5432"
     volumes:

@@ -7,7 +7,7 @@ class Produto(models.Model):
 
     nome = models.TextField(u'Nome do Produto', max_length=255)
 
-    codigo = models.TextField(u'Código do Produto', max_length=25, null=True, blank=True)
+    codigo = models.TextField(u'Código do Produto', max_length=25, unique=True, null=True, blank=True)
     
     estoque = models.FloatField(u'Estoque do Produto', null=False, blank=False, default=1.00)
     

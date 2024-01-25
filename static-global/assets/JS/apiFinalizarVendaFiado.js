@@ -92,7 +92,7 @@ $('#valor-pago-compra').on('input',  function(){
 
         var temClienteSelecionado = $('#client-comprando-id').val()
 
-        console.log(`Valor: ${temClienteSelecionado}`)
+        // console.log(`Valor: ${temClienteSelecionado}`)
 
         if (temClienteSelecionado){
             $('.btn-venda-avista-finalizada-parcialmente').removeClass('d-none')

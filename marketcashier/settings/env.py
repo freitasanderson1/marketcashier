@@ -6,7 +6,7 @@ DEBUG=True
 
 ALLOWED_HOSTS=['localhost','127.0.0.1','0.0.0.0']
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:1404']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:1404', 'http://localhost:5432']
 
 CORS_ALLOWED_ORIGINS = CSRF_TRUSTED_ORIGINS
 
@@ -16,7 +16,7 @@ DATABASES = {
     'NAME': 'marketcashier',
     'USER': 'anderson',
     'PASSWORD': 'password123',
-    'HOST': 'localhost',
+    'HOST': 'db',
     'PORT': '5432',
   }
 }
