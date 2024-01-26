@@ -1,6 +1,8 @@
 from django.http import JsonResponse
 from django.views import View
 
+from controle.models import Produto
+
 from bs4 import BeautifulSoup
 import requests
 
@@ -10,6 +12,22 @@ class GetProductNameView(View):
         
         barcode = kwargs.get('barcode').strip()
         
+        
+        try:
+            produto = Produto.objects.get(codigo=barcode, ativo=True)
+
+        except:
+            produto = None
+
+        if produto:
+
+            product = {
+                "name": "Produto já Cadastrado!",
+                "barcode": barcode
+            }
+            
+            return JsonResponse(product)
+
         url = f'https://api.cosmos.bluesoft.com.br/gtins/{barcode}.json'
 
         headers = {
@@ -64,7 +82,7 @@ class GetProductNameView(View):
             title = dados['properties']['title'][0]
         except:
             title = None
-        print(title)
+        # print(title)
         
         if title:
             product = {
@@ -91,7 +109,7 @@ class GetProductNameView(View):
         except:
             title = None
         
-        print(title)
+        # print(title)
         
         if title:
             product = {
@@ -118,7 +136,7 @@ class GetProductNameView(View):
         except:
             title = None
         
-        print(title)
+        # print(title)
         # [print(f'{t} e Index: {index}\n') for t,index in enumerate(title)]
         
         if title:
@@ -152,7 +170,7 @@ class GetProductNameView(View):
         except:
             title = None
         
-        print(title)
+        # print(title)
         # [print(f'{t} e Index: {index}\n') for t,index in enumerate(title)]
         
         if title:

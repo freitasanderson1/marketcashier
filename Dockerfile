@@ -20,6 +20,8 @@ COPY ./requirements.txt .
 
 RUN pip install -r requirements.txt
 
+RUN apk update && apk add git
+
 RUN adduser --disabled-password --no-create-home anderson && \
     mkdir -p /data/web/static && \
     mkdir -p /data/web/media && \
