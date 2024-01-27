@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
+from django.db.models import Q
 
 from cadastro.models import Cliente
 from controle.models import Venda, Pagamento
@@ -9,7 +10,7 @@ class VendasApiView(viewsets.ModelViewSet):
     serializer_class = VendaSerializer
 
     def get_queryset(self):
-        return Venda.objects.filter(ativo=True)
+        return Venda.objects.filter(ativo=True).order_by('dataCadastro')
 
     def update(self, request, *args, **kwargs):
         pk = kwargs.get('pk')
@@ -29,9 +30,13 @@ class VendasApiView(viewsets.ModelViewSet):
 
                     novoPagamento.valor = venda.valor if data.get('pago') == 'true' else float(data.get('valor'))
                     novoPagamento.tipo = data.get('tipo')
+                    novoPagamento.venda = venda
+
                     novoPagamento.save()
 
-                    venda.pagamento = novoPagamento
+                    
+
+                venda.finalizarVenda()
 
                 venda.save()
 
@@ -52,4 +57,39 @@ class VendasApiView(viewsets.ModelViewSet):
             responseData = {'mensagem': 'A API não recebeu os parâmetros necessários.'}
             status=412     
 
+        return Response(responseData,status=status)
+    
+    def retrieve(self, request, *args, **kwargs):
+        # print(f'Kwargs: {kwargs}')
+        # print(f'Request: {request}')
+
+        data = kwargs.get('pk').split('-')
+        
+        if data:
+            try:
+                data[1] = f'0{data[1]}' if len(data[1]) == 1 else data[1]
+
+                # print(f'Data de Hoje: {data}')
+
+                queryset = Venda.objects.filter(dataCadastro__year=data[2], 
+                    dataCadastro__month=data[1],
+                    dataCadastro__day=data[0],
+                    finalizado=True,
+                    ativo=True
+                    ).order_by('dataCadastro')
+
+                Venda_Serialized = VendaSerializer(queryset, many=True)
+
+                responseData = Venda_Serialized.data
+
+                # print(f'Dados Serializados: {responseData}')
+
+                status=200
+            except:
+                responseData = {'mensagem': 'Não existe vendas.'}
+                status=400
+        else:
+            responseData = {'mensagem': 'A API não recebeu os parâmetros necessários.'}
+            status=412     
+                                                                                                                                                                                          
         return Response(responseData,status=status)

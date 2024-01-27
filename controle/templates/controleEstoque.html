@@ -11,10 +11,18 @@
         </a>
     </div>
 
+    <div class="mt-2" style="padding-left:32px;">
+        <label class="form-label fs-4" for="termoListProdutos">Pesquise pelo Código de Barras ou Nome</label>
+        <input class="form-control" type="text" name="termoListProdutos" id="termoListProdutos" value="">
+    </div>
+
     {% include "modais/modalCreateProduct.html" %}
     {% include "modais/modalEditProduct.html" %}
     
     <div class="mt-4">
+        <ul id="listProdutosMensagem" style="list-style-type: none; padding-left: 0px;">
+            
+        </ul>
         <ul id="listProdutos" style="list-style-type: none; padding-left: 0px;">
             
         </ul>

@@ -29,8 +29,12 @@ class GetContaClienteView(View):
 
         for venda in vendas:
             if not venda.check_pago():
-                if venda.pagamento:
-                    resta = round((venda.valor - venda.pagamento.valor),2)
+                if venda.pagamentosVenda.all():
+                    listPagamentos = list()
+
+                    [listPagamentos.append(pagamento.valor) for pagamento in venda.pagamentosVenda.all()]
+
+                    resta = round((venda.valor - sum(listPagamentos)),2)
                 else:
                     resta = venda.valor
                     
@@ -57,7 +61,7 @@ class GetContaClienteView(View):
     
     def post(self, request, *args, **kwargs):
         
-        # print(f'Request: {request.POST}')
+        print(f'Request: {request.POST}')
 
         pk = kwargs.get('cpf')
         cliente = Cliente.objects.get(Q(cpf=pk)|Q(id=pk))
@@ -72,43 +76,62 @@ class GetContaClienteView(View):
         )
 
         for venda in vendas:
+
             if not venda.check_pago():
             
                 if valor > 0.00:
 
-                    if valor >= venda.valor:
-                        valor -= venda.valor
+                    if venda.pagamentosVenda.all():
+                        listPagamentos = list()
 
-                        novoPagamento = venda.pagamento if venda.pagamento else Pagamento()
+                        [listPagamentos.append(pagamento.valor) for pagamento in venda.pagamentosVenda.all()]
 
-                        novoPagamento.valor = venda.valor
+                        soma = sum(listPagamentos)
+
+                        resta = venda.valor - soma
+                    else:
+                        resta = venda.valor
+
+                    if valor >= resta:
+                        valor -= resta
+
+                        novoPagamento = Pagamento()
+
+                        novoPagamento.valor = round(resta,2)
                         novoPagamento.tipo = tipo
+                        novoPagamento.venda = venda
+
                         novoPagamento.save()
 
-                        venda.pagamento = novoPagamento
 
 
                     else:
-                        novoPagamento = venda.pagamento if venda.pagamento else Pagamento()
+                        novoPagamento = Pagamento()
 
-                        novoPagamento.valor += valor
+                        novoPagamento.valor = round(valor,2)
                         novoPagamento.tipo = tipo
+                        novoPagamento.venda = venda
                         novoPagamento.save()
 
                         valor = 0
 
-                        venda.pagamento = novoPagamento
 
-                        # print(f'Dessa venda ainda falta: {venda.valor}')
+                        print(f'Dessa venda ainda falta: {venda.valor}')
 
                     venda.save()
 
-            # print(f'{cliente.nomeCompleto} ainda tem {valor}')
+            print(f'{cliente.nomeCompleto} ainda tem {valor}')
+            
         valores = list()
 
         for venda in vendas:
             if not venda.check_pago():
-                resta = venda.valor - venda.pagamento.valor
+                listPagamentos = list()
+
+                [listPagamentos.append(pagamento.valor) for pagamento in venda.pagamentosVenda.all()]
+
+                resta = round((venda.valor - sum(listPagamentos)),2)
+
                 valores.append(resta)
 
         soma = float(sum(valores)) if valores else 0

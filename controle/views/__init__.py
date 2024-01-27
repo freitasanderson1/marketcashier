@@ -5,5 +5,6 @@ from controle.views.GetContaClienteView import GetContaClienteView
 
 ####### API ##########
 from controle.views.api.VendasApiView import VendasApiView ### Todas as vendas
-from controle.views.api.ProdutosApiView import ProdutosApiView ### Todas os Produtos
-from controle.views.api.ItemVendaApiView import ItemVendaApiView ### Todas os ItemVenda
+from controle.views.api.ProdutosApiView import ProdutosApiView ### Todos os Produtos
+from controle.views.api.PagamentosApiView import PagamentosApiView ### Todos os Pagamentos
+from controle.views.api.ItemVendaApiView import ItemVendaApiView ### Todos os ItemVenda

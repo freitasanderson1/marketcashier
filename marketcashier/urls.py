@@ -4,7 +4,7 @@ from django.urls import path
 from cadastro.views import LoginView, SairView, ClientesApiView
 from controle.views import IndexMarket, GetProductNameView, GetContaClienteView
 
-from controle.views import VendasApiView, ProdutosApiView, ItemVendaApiView
+from controle.views import VendasApiView, ProdutosApiView, ItemVendaApiView, PagamentosApiView
 
 from rest_framework.routers import DefaultRouter
 
@@ -24,6 +24,7 @@ urlpatterns = [
 router = DefaultRouter(trailing_slash=False)
 router.register(r'api/dados_vendas',VendasApiView, basename='VendasApi')
 router.register(r'api/dados_produtos',ProdutosApiView, basename='ProdutosApi')
+router.register(r'api/dados_pagamentos',PagamentosApiView, basename='PagamentosApi')
 router.register(r'api/dados_item_venda',ItemVendaApiView, basename='ItemVendaApi')
 
 router.register(r'api/dados_clientes',ClientesApiView, basename='ClientesApi')

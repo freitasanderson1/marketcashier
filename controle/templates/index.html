@@ -27,6 +27,16 @@
             {% include 'vendas.html' %}
         </div>
 
+        <!-- Tab de List Vendas -->
+        <div class="tab-pane menu-tab inside-tab fade" id="listarVendas" role="tabpanel" aria-labelledby="listarVendas-tab">
+            {% include 'listVendas.html' %}
+        </div>
+        
+        <!-- Tab de List OpcoesCaixa -->
+        <div class="tab-pane menu-tab inside-tab fade" id="opcoesCaixa" role="tabpanel" aria-labelledby="opcoesCaixa-tab">
+            {% include 'opcoesCaixa.html' %}
+        </div>
+
         <!-- Tab de controleEstoque -->
         <div class="tab-pane menu-tab inside-tab fade" id="controleEstoque" role="tabpanel" aria-labelledby="controleEstoque-tab">
             {% include 'controleEstoque.html' %}
@@ -44,5 +54,7 @@
 <script src="{% static "assets/JS/apiCreateItemVenda.js" %}"></script>
 <script src="{% static "assets/JS/apiSelectCliente.js" %}"></script>
 <script src="{% static "assets/JS/apiFinalizarVendaFiado.js" %}"></script>
+<script src="{% static "assets/JS/apiGetVendas.js" %}"></script>
+<script src="{% static "assets/JS/apiGetPagamentos.js" %}"></script>
 
 {% endblock%}

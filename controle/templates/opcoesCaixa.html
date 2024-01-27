@@ -1,0 +1,81 @@
+{% extends "base/baseOption.html" %}
+
+{% block containerOption %}
+    <div class="d-flex justify-content-start">
+
+        <a class="clickable bg-success p-2 mx-2 rounded-4 text-white text-center" id="listarPagamentosHoje" style="text-decoration: none; width: 20rem;">
+            <span class="text-center" style="font-size: 20px;" class="text-white"><i class="fa-solid fa-cash-register"></i> Pagamentos de Hoje</span> 
+        </a>
+        <a class="clickable bg-success p-2 mx-2 rounded-4 text-white text-center" id="listaTodosPagamentos" style="text-decoration: none; width: 20rem;">
+            <span class="text-center" style="font-size: 20px;" class="text-white"><i class="fa-solid fa-list"></i> Todos os Pagamentos</span> 
+        </a>
+    </div>
+
+    <div class="info-cards d-flex justify-content-around">
+
+        <div class="card shadow rounded-4 bg-primary text-white mt-4 mb-4" style="min-width: 20rem;">
+            <div class="card-body align-items-center d-flex justify-content-center" style="">
+                <div>
+                    <div>
+                        <h1 class="text-center py-1" style="font-size: 30px;" class="text-white"><i class="fa-solid fa-piggy-bank"></i> Recebido hoje:</h1>
+                        <span class="text-center text-white px-5" style="font-size: 24px;" id="total-recebido-hoje"> </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow rounded-4 bg-success text-white mt-4 mb-4" style="min-width: 20rem;">
+            <div class="card-body align-items-center d-flex justify-content-center" style="">
+                <div>
+                    <div>
+                        <h1 class="text-center py-1" style="font-size: 30px;" class="text-white"><i class="fa-solid fa-money-bill-1-wave"></i> Dinheiro recebido hoje:</h1>
+                        <span class="text-center text-white px-5" style="font-size: 24px;" id="total-dinheiro-recebido-hoje"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow rounded-4 bg-info text-white mt-4 mb-4" style="min-width: 20rem;">
+            <div class="card-body align-items-center d-flex justify-content-center" style="">
+                <div>
+                    <div>
+                        <h1 class="text-center py-1" style="font-size: 30px;" class="text-white"><i class="fa-solid fa-money-bill-1-wave"></i> Pix recebido hoje:</h1>
+                        <span class="text-center text-white px-5" style="font-size: 24px;" id="total-pix-recebido-hoje"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-cards d-flex justify-content-around">
+    
+        <div class="card shadow rounded-4 bg-info text-white mt-4 mb-4" style="min-width: 20rem;">
+            <div class="card-body align-items-center d-flex justify-content-center" style="">
+                <div>
+                    <div>
+                        <h1 class="text-center py-1" style="font-size: 30px;" class="text-white"><i class="fa-solid fa-money-check-dollar"></i> Cartão Débito hoje:</h1>
+                        <span class="text-center text-white px-5" style="font-size: 24px;" id="total-debito-recebido-hoje"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow rounded-4 bg-info text-white mt-4 mb-4" style="min-width: 20rem;">
+            <div class="card-body align-items-center d-flex justify-content-center" style="">
+                <div>
+                    <div>
+                        <h1 class="text-center py-1" style="font-size: 30px;" class="text-white"><i class="fa-solid fa-credit-card"></i> Cartão Crédito hoje:</h1>
+                        <span class="text-center text-white px-5" style="font-size: 24px;" id="total-credito-recebido-hoje"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mt-4">
+        <ul id="listPagamentos" style="list-style-type: none; padding-left: 0px;">
+            
+        </ul>
+    </div>
+{% endblock containerOption %}

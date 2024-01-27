@@ -94,9 +94,9 @@ $('#valor-pago-compra').on('input',  function(){
 
         // console.log(`Valor: ${temClienteSelecionado}`)
 
-        if (temClienteSelecionado){
+        // if (temClienteSelecionado){
             $('.btn-venda-avista-finalizada-parcialmente').removeClass('d-none')
-        }
+        // }
 
     }
 

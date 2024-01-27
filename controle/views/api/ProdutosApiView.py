@@ -20,9 +20,12 @@ class ProdutosApiView(viewsets.ModelViewSet):
         if barcode:
             # print(f"BARCODE do Produto: {barcode}")
             try:
-                queryset = Produto.objects.filter(codigo=barcode)
+                queryset = Produto.objects.filter(
+                    Q(nome__icontains=barcode)|
+                    Q(codigo__icontains=barcode)
+                )
                 Produto_serialized = ProdutoSerializer(queryset, many=True)
-                responseData = Produto_serialized.data[0]
+                responseData = Produto_serialized.data
                 # print(f'Dados Serializados: {responseData}')
                 status=200
             except:

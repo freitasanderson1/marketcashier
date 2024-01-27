@@ -5,7 +5,15 @@ $('#listarProdutos').on('click', function(){
 $( document ).ready(function() {
     chamarApiproduto()
 });
-
+$('#termoListProdutos').on('input', function(){
+    var termo = $(this).val()
+  
+    // console.log(termo.length,termo)
+  
+    if (termo.length > 3){
+        chamarApiProdutoByTerm(termo)
+    }
+})
 async function chamarApiproduto(){
 
     let response = await fetch('api/dados_produtos');
@@ -91,4 +99,13 @@ function insertprodutos(data){
         })
         
     });
+}
+
+async function chamarApiProdutoByTerm(codigo){
+
+    let response = await fetch(`api/dados_produtos/${codigo}`);
+    let data = await response.json();
+
+    insertprodutos(data)
+
 }

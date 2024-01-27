@@ -1,5 +1,7 @@
 from django.db import models
 
+from controle.models import Venda
+
 TIPO_PAGAMENTO = (
         (1, 'Dinheiro'),
         (2, 'Pix'),
@@ -12,6 +14,8 @@ class Pagamento(models.Model):
     id = models.BigAutoField(primary_key=True)
 
     valor = models.FloatField(u'Valor da Compra', null=False, blank=False, default=0.00)
+
+    venda = models.ForeignKey(Venda, verbose_name='Venda', related_name='pagamentosVenda', null=True, on_delete=models.CASCADE)
 
     tipo = models.IntegerField('Tipo do Pagamento', choices=TIPO_PAGAMENTO, null=False, default=1)
 

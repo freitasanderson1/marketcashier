@@ -3,7 +3,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from cadastro.models import Cliente
-from controle.models import Pagamento
 
 
 class Venda(models.Model):
@@ -20,8 +19,6 @@ class Venda(models.Model):
     dataAlteracao = models.DateTimeField(u'Última Alteração', auto_now=True, blank=True)
 
     finalizado = models.BooleanField(verbose_name=u'Finalizado?', default=False, editable=True)
-    
-    pagamento = models.ForeignKey(Pagamento, verbose_name=u'Pagamento', null=True, on_delete=models.SET_NULL)
     
     ativo = models.BooleanField(verbose_name=u'Ativo?', default=True, editable=True)
 
@@ -54,8 +51,16 @@ class Venda(models.Model):
     #     super(Venda, self).save()
 
     def check_pago(self):
-        if self.pagamento and self.valor == self.pagamento.valor:
-            return True
+        if self.pagamentosVenda.all():
+            listPagamentos = list()
+
+            [listPagamentos.append(pagamento.valor) for pagamento in self.pagamentosVenda.all()]
+
+            if self.valor == sum(listPagamentos):
+                return True
+            else:
+                return False
+
         else:
             return False
 
@@ -69,6 +74,6 @@ class Venda(models.Model):
                 item.produto.estoque -= item.quantidade
                 item.produto.save()
 
-        self.finalizado = True
+        # self.finalizado = True
         
         return

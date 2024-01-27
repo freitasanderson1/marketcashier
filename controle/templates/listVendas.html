@@ -1,0 +1,29 @@
+{% extends "base/baseOption.html" %}
+
+{% block containerOption %}
+    <div class="d-flex justify-content-start">
+
+        <a class="clickable bg-success p-2 mx-2 rounded-4 text-white text-center" id="listarVendasHoje" style="text-decoration: none; width: 15rem;">
+            <span class="text-center" style="font-size: 20px;" class="text-white"><i class="fa-solid fa-cash-register"></i> Vendas de Hoje</span> 
+        </a>
+        <a class="clickable bg-success p-2 mx-2 rounded-4 text-white text-center" id="listaTodasVendas" style="text-decoration: none; width: 15rem;">
+            <span class="text-center" style="font-size: 20px;" class="text-white"><i class="fa-solid fa-list"></i> Todas as Vendas</span> 
+        </a>
+    </div>
+
+    {% comment %} <div class="mt-2" style="padding-left:32px;">
+        <label class="form-label fs-4" for="termoListVendas">Pesquise pelo Código de Barras ou Nome</label>
+        <input class="form-control" type="text" name="termoListVendas" id="termoListVendas" value="">
+    </div> {% endcomment %}
+
+    {% comment %} 
+        {% include "modais/modalCreateProduct.html" %}
+        {% include "modais/modalEditProduct.html" %}
+    {% endcomment %}
+
+    <div class="mt-4">
+        <ul id="listVendas" style="list-style-type: none; padding-left: 0px;">
+            
+        </ul>
+    </div>
+{% endblock containerOption %}

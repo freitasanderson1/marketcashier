@@ -16,11 +16,11 @@ async function chamarApiItemVenda(codigo){
     let response = await fetch(`api/dados_produtos/${codigo}`);
     let data = await response.json();
 
-    insertItemVenda(data, $('#produto-quantidade').val())
+    insertItemVenda(data[0], $('#produto-quantidade').val())
 
     // console.log(`Resposta: ${data.nome}`)
     $('#produto-nome').empty()
-    $('#produto-nome').text(data.nome)
+    $('#produto-nome').text(data[0].nome)
 
     $('#produto-codigo').val('')
     $('#produto-quantidade').val('1')
