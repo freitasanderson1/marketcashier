@@ -43,18 +43,25 @@ class ProdutosApiView(viewsets.ModelViewSet):
         
         data = request.POST
 
-        produto = Produto()
+        try:
+            produto = Produto.objects.get(codigo=data.get('codigo'))
+            
+            responseData = {'mensagem': 'Já existe um Produto com esse código Cadastrado!',}
+            status=409	 
 
-        produto.nome = data.get('nome').strip()
-        produto.codigo = data.get('codigo')
-        produto.unidadePeso = True if data.get('unidadePeso') == 'true' else False
-        produto.estoque = data.get('estoque')
-        produto.preco = data.get('preco')
-        produto.ativo = True
-        produto.save()
+        except:
+            produto = Produto()
 
-        responseData = {'mensagem': 'Produto Cadastrado!',}
-        status=201  
+            produto.nome = data.get('nome').strip()
+            produto.codigo = data.get('codigo')
+            produto.unidadePeso = True if data.get('unidadePeso') == 'true' else False
+            produto.estoque = data.get('estoque')
+            produto.preco = data.get('preco')
+            produto.ativo = True
+            produto.save()
+
+            responseData = {'mensagem': 'Produto Cadastrado!',}
+            status=201  
 
         return Response(responseData,status=status)
     
@@ -67,6 +74,7 @@ class ProdutosApiView(viewsets.ModelViewSet):
         produto = Produto.objects.get(id=data.get('id'))
 
         produto.nome = data.get('nome')
+        produto.codigo = data.get('codigo')
         produto.estoque = data.get('estoque')
         produto.preco = data.get('preco')
 

@@ -74,7 +74,9 @@ function APIcreateProduto(url,data) {
             insertMensagem(dados)
         },
         error: function (retorno) {
-            console.log(retorno)
+            // console.log(retorno.responseJSON)
+            insertMensagem(retorno.responseJSON, 'danger')
+
         },
 
     })

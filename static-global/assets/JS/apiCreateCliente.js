@@ -1,14 +1,10 @@
 $('.btn-submit-new-cliente').on('click', function(){
     var url = `api/dados_clientes`
 
-    var ddd = $('#ddd_id').val()
-    var telefone = $('#telefone_id').val()
-
-    var contato = `${ddd}${telefone}`
     var data = {
         'nomeCompleto' : $('#nomeNovoCliente').val(),
         'cpf' : $('#cpfNovoCliente').val(),
-        'celular' : contato,
+        'celular' : $('#telefone_id').val(),
         'endereco' : $('#enderecoNovoCliente').val(),
         'dataNascimento' : $('#data_id').val(),
         'ativo': true,
@@ -37,26 +33,25 @@ function APIcreateCliente(url,data) {
             $('#cpfNovoCliente').val(''),
             $('#enderecoNovoCliente').val(''),
             $('#data_id').val(''),
-            $('#ddd_id').val(''),
             $('#telefone_id').val('')
 
             insertMensagemCliente(dados)
         },
         error: function (retorno) {
-            console.log(retorno)
+            insertMensagemCliente(retorno.responseJSON, 'warning',retorno.responseJSON.mensagem)
         },
 
     })
 }
 
-function insertMensagemCliente(dados){
+function insertMensagemCliente(dados, alertType='success', mensagem='Cliente Cadastrado!'){
     $('#listClientes').parent().prepend(`
         
         <ul class="messages pt-3">
                 
-            <div class="alert alert-success alert-dismissible fade show">
+            <div class="alert alert-${alertType} alert-dismissible fade show">
                 <span style="">
-                    Cliente Cadastrado!
+                    ${mensagem}
                 </span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>

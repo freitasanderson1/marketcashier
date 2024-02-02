@@ -5,6 +5,7 @@ $('.btn-submit-product').on('click', function(){
         var data = {
             'id' : id,
             'nome' : $('#nomeProduto').val(),
+            'codigo': $('#codigoProduto').val(),
             'estoque' : $('#estoqueProduto').val(),
             'preco' : $('#precoProduto').val(),
         }
@@ -35,12 +36,14 @@ function APIupdateProduto(url,data) {
     })
 }
 
-function insertMensagem(dados){
+function insertMensagem(dados, alertType = 'success'){
+    $('#listProdutosMensagem').empty()
+    
     $('#listProdutosMensagem').prepend(`
         
         <li class="messages">
                 
-            <div class="alert alert-success alert-dismissible fade show pt-3">
+            <div class="alert alert-${alertType} alert-dismissible fade show pt-3">
                 <span style="">
                     ${dados.mensagem}
                 </span>

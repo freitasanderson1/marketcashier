@@ -42,3 +42,41 @@ class ClientesApiView(viewsets.ModelViewSet):
             status=412     
                                                                                                                                                                                           
         return Response(responseData,status=status)
+    
+    def create(self, request, *args, **kwargs):
+        data = request.POST
+
+        # print(f'request: {data}')
+
+        try:
+            existeCliente = Cliente.objects.get(cpf=data.get('cpf'))
+
+            responseData = {'mensagem': 'O CPF desse Cliente já está cadastrado.'}
+
+            status = 409
+
+        except:
+            novoCliente = Cliente()
+
+            novoCliente.nomeCompleto = data.get('nomeCompleto')
+            novoCliente.cpf = data.get('cpf')
+            novoCliente.celular = data.get('celular')
+            novoCliente.endereco = data.get('endereco')
+            novoCliente.dataNascimento = data.get('dataNascimento')
+            novoCliente.nomeCompleto = data.get('nomeCompleto')
+
+            novoCliente.save()
+
+            queryset = Cliente.objects.filter(id=novoCliente.id)
+
+            Cliente_serialized = ClienteSerializer(queryset, many=True)
+            
+            queryset = Cliente.objects.filter(id=novoCliente.id)
+            Cliente_serialized = ClienteSerializer(queryset, many=True)
+            responseData = Cliente_serialized.data[0]
+
+            # print(f'Dados Serializados: {responseData}')
+
+            status=200
+
+        return Response(responseData,status=status)
