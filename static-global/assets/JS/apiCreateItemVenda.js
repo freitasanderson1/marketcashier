@@ -119,7 +119,7 @@ async function insertItemVendaLista(data){
         $('#produto-valor-total-item').text(`${element.valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`)
 
         if(element.ativo){
-            $('#listItemVenda').append(`
+            $('#listItemVenda').prepend(`
                 <li class="card p-2 mb-1 shadow">
                     <div class="row">
                         <div class="col"> 

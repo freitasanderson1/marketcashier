@@ -39,7 +39,7 @@ class GetContaClienteView(View):
                     resta = venda.valor
                     
                 dictVenda = {
-                    'info': f'ID: {venda.id} - {cliente.nomeCompleto.split(' ')[0]} deve R${resta} de uma compra em {venda.dataCadastro.strftime("%d/%m/%Y")}',
+                    'info': f'ID: {venda.id} - {cliente.nomeCompleto.split(" ")[0]} deve R${resta} de uma compra em {venda.dataCadastro.strftime("%d/%m/%Y")}',
                     'valor': resta,
                     'dataAlteracao': venda.dataAlteracao
                 }
