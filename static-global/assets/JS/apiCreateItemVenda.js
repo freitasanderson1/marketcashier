@@ -16,9 +16,9 @@ async function chamarApiItemVenda(codigo){
     let response = await fetch(`api/dados_produtos/${codigo}`);
     let data = await response.json();
 
-    insertItemVenda(data[0], $('#produto-quantidade').val())
+    // console.log(`Resposta: ${data[1].quantidade}`)
+    insertItemVenda(data[0], data[1] ? data[1].quantidade: $('#produto-quantidade').val())
 
-    // console.log(`Resposta: ${data.nome}`)
     $('#produto-nome').empty()
     $('#produto-nome').text(data[0].nome)
 

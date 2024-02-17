@@ -12,20 +12,37 @@ class ProdutosApiView(viewsets.ModelViewSet):
     serializer_class = ProdutoSerializer
 
     def get_queryset(self):
-        return Produto.objects.filter(ativo=True)
+        return Produto.objects.filter(ativo=True).order_by('nome')
 
     def retrieve(self, request, *args, **kwargs):
         barcode = kwargs.get('pk')
 
         if barcode:
-            # print(f"BARCODE do Produto: {barcode}")
+            # print(f"BARCODE do Produto: {float(barcode[6:len(barcode)])/10000}")
             try:
                 queryset = Produto.objects.filter(
                     Q(nome__icontains=barcode)|
                     Q(codigo__icontains=barcode)
                 )
+                if not queryset and barcode[0] == '2':
+                    queryset = Produto.objects.filter(
+                        Q(codigo__icontains=barcode[1:6])
+                    )
                 Produto_serialized = ProdutoSerializer(queryset, many=True)
-                responseData = Produto_serialized.data
+
+                responseData = Produto_serialized.data if not barcode[0] == '2' else None
+                
+                if barcode[0] == '2':
+
+                    responseData = []
+                    for item in Produto_serialized.data:
+                        # print(f'Item: {item}')
+                        responseData.append(dict(item))
+
+                    quantidade = float(barcode[6:len(barcode)])/10000
+                    # print(f'Quantidade: {type(quantidade)} - {quantidade}')
+                    responseData.append({'quantidade':quantidade})
+
                 # print(f'Dados Serializados: {responseData}')
                 status=200
             except:

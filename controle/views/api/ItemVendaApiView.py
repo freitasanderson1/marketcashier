@@ -17,12 +17,12 @@ class ItemVendaApiView(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
 
         # print(f'Request Create: {request.POST}')
+        data = request.POST
         
-        produto = Produto.objects.get(id=request.POST.get('produto'))
+        produto = Produto.objects.get(id=data.get('produto'))
 
         # print(f'Produto: {produto}')
 
-        data = request.POST
 
         novoItem = ItemVenda()
         novoItem.produto = produto

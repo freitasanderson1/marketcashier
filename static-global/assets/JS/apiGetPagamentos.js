@@ -19,8 +19,8 @@ async function chamarApiPagamentos(dataPagamento){
     }
     let data = await response.json();
 
-    console.log(`Index: ${Object.getOwnPropertyNames(data.pagamentos)}`);
-    console.log(`Dados: ${data.pagamentos}`)
+    // console.log(`Index: ${Object.getOwnPropertyNames(data.pagamentos)}`);
+    // console.log(`Dados: ${data.pagamentos}`)
 
     insertPagamentos(data)
 }
