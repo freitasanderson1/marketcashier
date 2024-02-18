@@ -15,24 +15,18 @@ class ProdutosApiView(viewsets.ModelViewSet):
         return Produto.objects.filter(ativo=True).order_by('nome')
 
     def retrieve(self, request, *args, **kwargs):
-        barcode = kwargs.get('pk')
+        barcode = kwargs.get('pk').strip()
 
         if barcode:
-            # print(f"BARCODE do Produto: {float(barcode[6:len(barcode)])/10000}")
+            # print(f"BARCODE do Produto: {len(barcode)}")
             try:
-                queryset = Produto.objects.filter(
-                    Q(nome__icontains=barcode)|
-                    Q(codigo__icontains=barcode)
-                )
-                if not queryset and barcode[0] == '2':
+                if barcode[0] == '2' and len(barcode) == 13:
                     queryset = Produto.objects.filter(
                         Q(codigo__icontains=barcode[1:6])
                     )
-                Produto_serialized = ProdutoSerializer(queryset, many=True)
+                    # print(f'Resultado: {queryset}')
 
-                responseData = Produto_serialized.data if not barcode[0] == '2' else None
-                
-                if barcode[0] == '2':
+                    Produto_serialized = ProdutoSerializer(queryset, many=True)
 
                     responseData = []
                     for item in Produto_serialized.data:
@@ -43,7 +37,20 @@ class ProdutosApiView(viewsets.ModelViewSet):
                     # print(f'Quantidade: {type(quantidade)} - {quantidade}')
                     responseData.append({'quantidade':quantidade})
 
+                else:
+                    queryset = Produto.objects.filter(
+                        Q(nome__icontains=barcode)|
+                        Q(codigo__icontains=barcode)
+                    )
+
+                    Produto_serialized = ProdutoSerializer(queryset, many=True)
+
+                    responseData = Produto_serialized.data
+
+                # print(f'Resultado: {queryset}')
+                
                 # print(f'Dados Serializados: {responseData}')
+
                 status=200
             except:
                 responseData = {'mensagem': 'O ID do Produto não existe.'}

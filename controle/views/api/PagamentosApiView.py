@@ -13,7 +13,7 @@ class PagamentosApiView(viewsets.ModelViewSet):
 
     def get_queryset(self):
 
-        queryset = Pagamento.objects.filter(ativo=True)
+        queryset = Pagamento.objects.filter(ativo=True).order_by('dataCadastro')
         
         listPagamentos = {
             'dinheiro': list(),

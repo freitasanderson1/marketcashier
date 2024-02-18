@@ -81,8 +81,6 @@ DATE_FORMAT = '%d/%m/%Y'
 
 LANGUAGE_CODE = 'pt-BR'
 
-TIME_ZONE = 'UTC'
-
 USE_I18N = True
 
 USE_TZ = True

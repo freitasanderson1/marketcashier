@@ -2,9 +2,9 @@ $('#listarPagamentosHoje').on('click', function(){
     chamarApiPagamentos(dataDeHoje)
 });
 
-$('#listaTodosPagamentos').on('click', function(){ 
-    chamarApiPagamentos()
-});
+// $('#listaTodosPagamentos').on('click', function(){ 
+//     chamarApiPagamentos()
+// });
 
 $( document ).ready(function() {
     chamarApiPagamentos(dataDeHoje)
@@ -19,8 +19,8 @@ async function chamarApiPagamentos(dataPagamento){
     }
     let data = await response.json();
 
-    // console.log(`Index: ${Object.getOwnPropertyNames(data.pagamentos)}`);
-    // console.log(`Dados: ${data.pagamentos}`)
+    // console.log(`Index: ${Object.getOwnPropertyNames(data.pagamentos)}`)
+    // console.log(`Dados: ${data.pagamentos}`) 
 
     insertPagamentos(data)
 }
@@ -36,11 +36,11 @@ function insertPagamentos(data){
     // Somar Dinheiro
 
     var somaDinheiro = 0;
-
+    
     for (var i = 0; i < data.pagamentos.dinheiro.length; i++) {
         somaDinheiro += data.pagamentos.dinheiro[i];
     }
-
+    
     $('#total-dinheiro-recebido-hoje').empty()
     $('#total-dinheiro-recebido-hoje').text(`R$ ${somaDinheiro.toFixed(2)}`)
     //////////////////
