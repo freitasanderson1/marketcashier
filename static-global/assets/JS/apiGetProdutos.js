@@ -80,15 +80,15 @@ function insertprodutos(data){
         var preco = $(this).data('ms-preco')
         var unidadepeso = $(this).data('ms-unidadepeso')
 
-        // console.log(unidadepeso)
-        // console.log($(this).data('ms-unidadepeso'))
+        console.log(unidadepeso)
+        console.log($(this).data('ms-unidadepeso'))
 
         $('#modalEditProductLabel').text(`Editando - ${nome}`)
 
         $('#idProduto').val(`${id}`)
         $('#nomeProduto').val(`${nome}`)
         $('#codigoProduto').val(`${codigo}`)
-        $('#tipoProduto').attr('checked', unidadepeso)
+        $('#tipoProduto').prop('checked', unidadepeso)
         $('#estoqueProduto').val(`${estoque}`)
         $('#precoProduto').val(`${preco}`)
         

@@ -93,7 +93,7 @@ class ProdutosApiView(viewsets.ModelViewSet):
     
     def update(self, request, *args, **kwargs):
 
-        print(f'Request Update: {request.POST}')
+        # print(f'Request Update: {request.POST}')
 
         data = request.POST
 
