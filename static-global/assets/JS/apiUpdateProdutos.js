@@ -6,6 +6,7 @@ $('.btn-submit-product').on('click', function(){
             'id' : id,
             'nome' : $('#nomeProduto').val(),
             'codigo': $('#codigoProduto').val(),
+            'unidadePeso': $('#tipoProduto').is(':checked'),
             'estoque' : $('#estoqueProduto').val(),
             'preco' : $('#precoProduto').val(),
         }

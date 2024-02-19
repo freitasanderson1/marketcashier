@@ -69,36 +69,37 @@ function insertprodutos(data){
                 </div>
             </li>
         `)
-
-        $('.btn-update-product').on('click', function(){
-            var id = $(this).data('ms-id')
-            var nome = $(this).data('ms-nome')
-            var codigo = $(this).data('ms-codigo')
-            var estoque = $(this).data('ms-estoque')
-            var preco = $(this).data('ms-preco')
-            var unidadepeso = $(this).data('ms-unidadepeso')
-
-            // console.log(unidadepeso)
-            // console.log($(this).data('ms-unidadepeso'))
-
-            $('#modalEditProductLabel').text(`Editando - ${nome}`)
-
-            $('#idProduto').val(`${id}`)
-            $('#nomeProduto').val(`${nome}`)
-            $('#codigoProduto').val(`${codigo}`)
-            $('#estoqueProduto').val(`${estoque}`)
-            $('#precoProduto').val(`${preco}`)
-            
-            if(unidadepeso){
-                $('#estoqueProduto').attr('step','1')
-            }
-            else{
-                $('#estoqueProduto').attr('step','0.01')
-            }
-
-        })
         
     });
+
+    $('.btn-update-product').on('click', function(){
+        var id = $(this).data('ms-id')
+        var nome = $(this).data('ms-nome')
+        var codigo = $(this).data('ms-codigo')
+        var estoque = $(this).data('ms-estoque')
+        var preco = $(this).data('ms-preco')
+        var unidadepeso = $(this).data('ms-unidadepeso')
+
+        // console.log(unidadepeso)
+        // console.log($(this).data('ms-unidadepeso'))
+
+        $('#modalEditProductLabel').text(`Editando - ${nome}`)
+
+        $('#idProduto').val(`${id}`)
+        $('#nomeProduto').val(`${nome}`)
+        $('#codigoProduto').val(`${codigo}`)
+        $('#tipoProduto').attr('checked', unidadepeso)
+        $('#estoqueProduto').val(`${estoque}`)
+        $('#precoProduto').val(`${preco}`)
+        
+        if(unidadepeso){
+            $('#estoqueProduto').attr('step','1')
+        }
+        else{
+            $('#estoqueProduto').attr('step','0.01')
+        }
+
+    })
 }
 
 async function chamarApiProdutoByTerm(codigo){

@@ -24,7 +24,7 @@ class ProdutosApiView(viewsets.ModelViewSet):
                     queryset = Produto.objects.filter(
                         Q(codigo__icontains=barcode[1:6])
                     )
-                    # print(f'Resultado: {queryset}')
+                    print(f'Resultado: {queryset}')
 
                     Produto_serialized = ProdutoSerializer(queryset, many=True)
 
@@ -33,8 +33,10 @@ class ProdutosApiView(viewsets.ModelViewSet):
                         # print(f'Item: {item}')
                         responseData.append(dict(item))
 
-                    quantidade = float(barcode[6:len(barcode)])/10000
-                    # print(f'Quantidade: {type(quantidade)} - {quantidade}')
+                    # print(f'Barcode: {barcode[6:12]}')
+                    quantidade = float(barcode[6:len(barcode)-1]) if queryset[0].unidadePeso else float(barcode[6:len(barcode)])/10000
+
+                    print(f'Quantidade: {type(quantidade)} - {quantidade}')
                     responseData.append({'quantidade':quantidade})
 
                 else:
@@ -91,7 +93,7 @@ class ProdutosApiView(viewsets.ModelViewSet):
     
     def update(self, request, *args, **kwargs):
 
-        # print(f'Request Update: {request.POST}')
+        print(f'Request Update: {request.POST}')
 
         data = request.POST
 
@@ -99,6 +101,7 @@ class ProdutosApiView(viewsets.ModelViewSet):
 
         produto.nome = data.get('nome')
         produto.codigo = data.get('codigo')
+        produto.unidadePeso = True if data.get('unidadePeso') == 'true' else False
         produto.estoque = data.get('estoque')
         produto.preco = data.get('preco')
 

@@ -42,15 +42,14 @@ async function chamarApiSelecionarCliete(termo){
             </div>
         </div>
       </li>
-   `)
+   `)    
+  });
 
-   $('.btn-select-cliente').on('click', function(){
+  $('.btn-select-cliente').on('click', function(){
     $('#cliente-nome').text($(this).data('ms-nome'))
     $('#client-comprando-id').val($(this).data('ms-id'))
     $('#client-comprando-nome').val($(this).data('ms-nome'))
     $('#client-comprando-cpf').val($(this).data('ms-cpf'))
   })
-    
-  });
   
 }
