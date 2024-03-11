@@ -55,13 +55,16 @@ class ItemVendaApiView(viewsets.ModelViewSet):
                 venda = Venda.objects.get(id=pk)
                 venda.valor = soma
                 venda.save()
-
+                valorTotal = round(soma + ((5/100)*soma),2)
+                desconto = round(valorTotal - soma,2)
                 responseData = {
                     'itens': ItemVenda_serialized.data,
-                    'valor' : soma
+                    'valor' : valorTotal,
+                    'avista': soma,
+                    'desconto': desconto
                 }
 
-                # print(f'Dados Serializados: {responseData["valor"]}')
+                # print(f'Dados Serializados: {responseData}')
 
                 status=200
             except:
