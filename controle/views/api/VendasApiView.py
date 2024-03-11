@@ -43,10 +43,31 @@ class VendasApiView(viewsets.ModelViewSet):
             # {'cliente': ['1'], 'pago': ['false'], 'valor': ['10'], 'tipo': ['1']}>
 
                 # print(Venda, Venda.venda.id)
+                if venda.pagamentosVenda.all():
+                    listPagamentos = list()
+
+                    for pagamento in venda.pagamentosVenda.all():
+                        if pagamento.tipo in [1,2]: 
+                            listPagamentos.append(round(pagamento.valor + ((5/100) * pagamento.valor),2)) 
+                        else:
+                            listPagamentos.append(round(pagamento.valor,2)) 
+
+                    valorTotal = venda.valor
+
+                    venda.valor = round(venda.valor + ((5/100)*venda.valor),2)
+                    resta = round((venda.valor - sum(listPagamentos)),2)
+                    desconto = round((venda.valor - valorTotal)-((5/100)*sum(listPagamentos)),2)
+
+                else:
+                    resta = venda.valor
+                    valorTotal = round(resta + ((5/100)*resta),2)
+                    desconto = round(valorTotal - resta,2)
 
                 responseData = {
                     'mensagem': 'A Venda foi finalizada.',
                     'venda': venda.id,
+                    'pago': resta,
+                    'desconto': desconto
                 }
 
                 status=200

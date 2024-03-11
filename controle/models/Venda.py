@@ -56,7 +56,7 @@ class Venda(models.Model):
 
             [listPagamentos.append(pagamento.valor) for pagamento in self.pagamentosVenda.all()]
 
-            if self.valor == sum(listPagamentos):
+            if self.valor <= sum(listPagamentos):
                 return True
             else:
                 return False

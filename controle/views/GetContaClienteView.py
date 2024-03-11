@@ -37,14 +37,15 @@ class GetContaClienteView(View):
                     resta = round((venda.valor - sum(listPagamentos)),2)
                 else:
                     resta = venda.valor
-                    
-                dictVenda = {
-                    'info': f'ID: {venda.id} - {cliente.nomeCompleto.split(" ")[0]} deve R${resta} de uma compra em {venda.dataCadastro.strftime("%d/%m/%Y")}',
-                    'valor': resta,
-                    'dataAlteracao': venda.dataAlteracao
-                }
-                valores.append(resta)
-                listVendas.append(dictVenda)
+                
+                if resta > 0.0000:
+                    dictVenda = {
+                        'info': f'ID: {venda.id} - {cliente.nomeCompleto.split(" ")[0]} deve R${resta} de uma compra em {venda.dataCadastro.strftime("%d/%m/%Y")}',
+                        'valor': resta,
+                        'dataAlteracao': venda.dataAlteracao
+                    }
+                    valores.append(resta)
+                    listVendas.append(dictVenda)
 
         soma = float(sum(valores))
 

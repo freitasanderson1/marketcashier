@@ -38,19 +38,47 @@ $('.btn-venda-avista-finalizada-parcialmente').on('click',function(){
 })
 
 $('.btn-venda-avista').on('click', function(){
+
     var valorTotal = $('#venda-valor-total-input').val()
+    var valorDesconto = $('#venda-valor-desconto-input').val()
 
     // var valorNumerico = valorTotal.slice(3,valorTotal.length)
 
     // console.log(valorNumerico)
 
     $('#valor-total-compra').text(`${parseFloat(valorTotal).toFixed(2)}`)
+    $('#valor-desconto-compra').text(`${parseFloat(valorDesconto).toFixed(2)}`)
 
 })
 
 $("input:radio[name='tipoPagamento']").on('click',function(){
+    var tipo = $('input[name=tipoPagamento]:checked').val()
 
-    // console.log($('input[name=tipoPagamento]:checked').val())
+    // console.log(tipo)
+    
+    var valorTotal = $('#venda-valor-total-input').val()
+    var desconto = $('#venda-valor-desconto-input').val()
+
+    switch (tipo){
+        case '1':
+            $('#valor-total-compra').empty().text(`${parseFloat(valorTotal-desconto).toFixed(2)}`)
+            $('#valor-desconto-compra').empty().text(`${parseFloat(desconto).toFixed(2)}`)
+            break;
+        case '2':
+            $('#valor-total-compra').empty().text(`${parseFloat(valorTotal-desconto).toFixed(2)}`)
+            $('#valor-desconto-compra').empty().text(`${parseFloat(desconto).toFixed(2)}`)
+            break;
+        case '3':
+            $('#valor-total-compra').empty().text(`${parseFloat(valorTotal).toFixed(2)}`)
+            $('#valor-desconto-compra').empty().text(`0.00`)
+            break;
+        case '4':
+            $('#valor-total-compra').empty().text(`${parseFloat(valorTotal).toFixed(2)}`)
+            $('#valor-desconto-compra').empty().text(`0.00`)
+            break;
+    }
+
+    // console.log(valorTotal,desconto)
 
     $('#tipoPagamentoSelecionado').val($('input[name=tipoPagamento]:checked').val())
 
@@ -60,12 +88,35 @@ $("input:radio[name='tipoPagamento']").on('click',function(){
 })
 
 $('#valor-pago-compra').on('input',  function(){
-    console.log('Inserindo', parseFloat($('#valor-total-compra').text()).toFixed(2))
+    // console.log('Inserindo', parseFloat($('#valor-total-compra').text()).toFixed(2))
+    var tipo = $('input[name=tipoPagamento]:checked').val()
+
+    var valorTotal = $('#venda-valor-total-input').val()
+    var desconto = $('#venda-valor-desconto-input').val()
+
+    switch (tipo){
+        case '1':
+            var troco =  parseFloat($(this).val()).toFixed(2) - parseFloat(valorTotal-desconto).toFixed(2)
+            break;
+        case '2':
+            var troco =  parseFloat($(this).val()).toFixed(2) - parseFloat(valorTotal-desconto).toFixed(2)
+            break;
+        case '3':
+            var troco =  parseFloat($(this).val()).toFixed(2) - parseFloat(valorTotal).toFixed(2)
+            break;
+        case '4':
+            var troco =  parseFloat($(this).val()).toFixed(2) - parseFloat(valorTotal).toFixed(2)
+            break;
+    }
     
-    var troco =  parseFloat($(this).val()).toFixed(2) - parseFloat($('#venda-valor-total-input').val()).toFixed(2)
     
     // console.log(troco.toFixed(2))
-    if (troco.toFixed(2) >= 0.00){
+    var valorOriginal = $('#venda-valor-original').val()
+    var descontoOriginal = $('#produto-descontos-original').val()
+    var valorPago = $('#valor-pago-compra').val()
+
+    if (troco.toFixed(2) >= 0.00 && valorPago >= (valorOriginal - descontoOriginal)){
+
         $('#troco-compra').empty()
         
         $('#troco-compra').text(troco.toFixed(2))
@@ -75,6 +126,7 @@ $('#valor-pago-compra').on('input',  function(){
         $('#restando-compra').text('0,00')
 
         $('.btn-venda-avista-finalizada').removeClass('d-none')
+        // $('.btn-venda-avista-finalizada-parcialmente').addClass('d-none')
 
         
     }
@@ -82,7 +134,7 @@ $('#valor-pago-compra').on('input',  function(){
         
         $('#restando-compra').empty()
         
-        $('#restando-compra').text(troco.toFixed(2))
+        $('#restando-compra').text(Math.abs(troco).toFixed(2))
 
         $('#troco-compra').empty()
         
@@ -153,7 +205,9 @@ async function finalizarVendaParcialmente(cliente, venda, valor){
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
         },
         success: function (dados) {
-            // console.log(dados)
+            // console.log(dados.desconto, dados.pago)
+            $('#venda-valor-total-input').val(dados.pago.toFixed(2))
+            $('#venda-valor-desconto-input').val(dados.desconto.toFixed(2))
             insertMensagemFinalizar(dados.mensagem)
 
         },

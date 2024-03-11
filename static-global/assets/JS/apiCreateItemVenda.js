@@ -102,9 +102,16 @@ async function insertItemVendaLista(data){
     
     // console.log(`Dados: ${dados}`)
 
+    $('#produto-descontos').empty();
+    $('#produto-descontos').text(`${dados.desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`);
+    
     $('#venda-valor-total').empty();
     $('#venda-valor-total').text(`${dados.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`);
     $('#venda-valor-total-input').val(`${dados.valor}`);
+    $('#venda-valor-desconto-input').val(`${dados.desconto}`);
+
+    $('#venda-valor-original').val(`${dados.valor}`);
+    $('#produto-descontos-original').val(`${dados.desconto}`);
     
 
     dados.itens.forEach(element => {
@@ -115,9 +122,11 @@ async function insertItemVendaLista(data){
             var unidadePeso = 'KGs'
         }
         $('#produto-valor-unitario').empty();
+        element.produto.preco = (element.produto.preco + ((5/100)*element.produto.preco))
         $('#produto-valor-unitario').text(`${element.produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`);
-
+        
         $('#produto-valor-total-item').empty();
+        element.valorTotal = (element.valorTotal + ((5/100)*element.valorTotal))
         $('#produto-valor-total-item').text(`${element.valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`)
 
         if(element.ativo){

@@ -37,28 +37,28 @@
                         <div class="form-check form-check-inline text-white bg-success px-5 py-2 rounded-3">
                             <input class="form-check-input" type="radio" name="tipoPagamento" value="1" id="tipoPagamento1">
                             <label class="form-check-label fs-6" for="tipoPagamento1">
-                                Dinheiro
+                                <i class="fa-solid fa-money-bill-wave"></i> Dinheiro
                             </label>
                         </div>
 
                         <div class="form-check form-check-inline text-white bg-success px-5 py-2 rounded-3">
                             <input class="form-check-input" type="radio" name="tipoPagamento" value="2" id="tipoPagamento2">
                             <label class="form-check-label fs-6" for="tipoPagamento2">
-                                Pix
+                                <img src="https://www.svgrepo.com/show/500416/pix.svg" alt="pix icon" width="24px;" style="filter: invert(100%) sepia(10%) saturate(0%) hue-rotate(205deg) brightness(104%) contrast(101%);" srcset="">Pix
                             </label>
                         </div>
                         
                         <div class="form-check form-check-inline text-white bg-success px-5 py-2 rounded-3">
                             <input class="form-check-input" type="radio" name="tipoPagamento" value="3" id="tipoPagamento3">
                             <label class="form-check-label fs-6" for="tipoPagamento3">
-                                Débito
+                                <i class="fa-solid fa-credit-card"></i> Débito
                             </label>
                         </div>
                         
                         <div class="form-check form-check-inline text-white bg-success px-5 py-2 rounded-3">
                             <input class="form-check-input" type="radio" name="tipoPagamento" value="4" id="tipoPagamento4">
                             <label class="form-check-label fs-6" for="tipoPagamento4">
-                                Crédito
+                                <i class="fa-brands fa-cc-mastercard"></i> Crédito
                             </label>
                         </div>
                     </div>
@@ -66,17 +66,22 @@
                     <div class="func-pagar d-none">
 
                         <div class="d-flex justify-content-evenly mb-3">
-                            <div class="bg-success p-4 text-white text-center w-25 rounded-4">
+                            <div class="bg-success py-2 m-4 text-white text-center w-25 rounded-4">
                                 <p class="fs-3"><i class="fa-solid fa-cart-shopping"></i> Valor Total</p>
-                                <p class="text-center fs-4 mb-0">R$ <span id="valor-total-compra"></span></p> 
+                                <p class="text-center fs-4 mb-0">R$ <span id="valor-total-compra">0,00</span></p> 
                             </div>
-                        
-                            <div class="bg-warning p-4 text-white text-center w-25 rounded-4">
+
+                            <div class="bg-info py-2 m-4 text-white text-center w-25 rounded-4">
+                                <p class="fs-3"><i class="fa-solid fa-cart-shopping"></i> Desconto Dinheiro ou Pix</p>
+                                <p class="text-center fs-4 mb-0">R$ <span id="valor-desconto-compra">0,00</span></p> 
+                            </div>
+
+                            <div class="bg-warning py-2 m-4 text-white text-center w-25 rounded-4">
                                 <p class="fs-3"><i class="fa-solid fa-coins"></i> Troco</p>
                                 <p class="text-center fs-4 mb-0">R$ <span id="troco-compra">0,00</span></p> 
                             </div>
                             
-                            <div class="bg-warning p-4 text-white text-center w-25 rounded-4">
+                            <div class="bg-warning py-2 m-4 text-white text-center w-25 rounded-4">
                                 <p class="fs-3"><i class="fa-solid fa-money-bill-wave"></i> Restando</p>
                                 <p class="text-center fs-4 mb-0">R$ <span id="restando-compra">0,00</span></p> 
                             </div>
