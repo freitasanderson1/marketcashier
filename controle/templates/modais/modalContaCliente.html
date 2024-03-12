@@ -28,7 +28,18 @@
 
             <div class="d-flex flex-column mb-1">
                 <label class="form-label" for="contaClienteDebito">Valor do Débito</label>
-                <input class="form-control" type="text" name="contaClienteDebito" id="contaClienteDebito" value="" disabled>
+                <div class="d-flex justify-content-around align-items-center">
+                    <div class="w-100 d-flex justify-content-center flex-column">
+
+                        <small class="form-text text-muted fw-bold text-primary">No cartão</small>
+                        <input class="form-control" style="width: 80% !important;" type="text" name="contaClienteDebito" id="contaClienteDebito" value="" disabled>
+                    </div>
+                    <div class="w-100 d-flex justify-content-center flex-column">
+                        <small class="form-text text-muted fw-bold text-primary">No dinheiro ou pix</small>
+                        <input class="form-control" style="width: 80% !important;" type="text" name="contaClienteDebitoAvista" id="contaClienteDebitoAvista" value="" disabled>
+                    </div>
+                        
+                </div>
             </div>
 
             <button style="width:20vw;" class="btn btn-success btn-mostra-abater-valor shadow rounded-4 mx-auto bg-success text-white mb-4">
