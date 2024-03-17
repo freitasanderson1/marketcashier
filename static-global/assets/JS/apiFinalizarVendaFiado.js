@@ -13,8 +13,9 @@ $('.btn-venda-fiado').on('click',function(){
     // console.log('remover item habilitado')
     var clienteId = $('#client-comprando-id').val()
     var vendaId = $('#IdVenda').val()
+    var valorOriginal = $('#venda-valor-original').val()
 
-    finalizarVendaFiado(clienteId,vendaId)
+    finalizarVendaFiado(clienteId,vendaId,valorOriginal)
     
 })
 
@@ -59,24 +60,27 @@ $("input:radio[name='tipoPagamento']").on('click',function(){
     var valorTotal = $('#venda-valor-total-input').val()
     var desconto = $('#venda-valor-desconto-input').val()
 
-    switch (tipo){
-        case '1':
-            $('#valor-total-compra').empty().text(`${parseFloat(valorTotal-desconto).toFixed(2)}`)
-            $('#valor-desconto-compra').empty().text(`${parseFloat(desconto).toFixed(2)}`)
-            break;
-        case '2':
-            $('#valor-total-compra').empty().text(`${parseFloat(valorTotal-desconto).toFixed(2)}`)
-            $('#valor-desconto-compra').empty().text(`${parseFloat(desconto).toFixed(2)}`)
-            break;
-        case '3':
-            $('#valor-total-compra').empty().text(`${parseFloat(valorTotal).toFixed(2)}`)
-            $('#valor-desconto-compra').empty().text(`0.00`)
-            break;
-        case '4':
-            $('#valor-total-compra').empty().text(`${parseFloat(valorTotal).toFixed(2)}`)
-            $('#valor-desconto-compra').empty().text(`0.00`)
-            break;
-    }
+    $('#valor-total-compra').empty().text(`${parseFloat(valorTotal-desconto).toFixed(2)}`)
+    $('#valor-desconto-compra').empty().text(`${parseFloat(desconto).toFixed(2)}`)
+
+    // switch (tipo){
+    //     case '1':
+    //         $('#valor-total-compra').empty().text(`${parseFloat(valorTotal-desconto).toFixed(2)}`)
+    //         $('#valor-desconto-compra').empty().text(`${parseFloat(desconto).toFixed(2)}`)
+    //         break;
+    //     case '2':
+    //         $('#valor-total-compra').empty().text(`${parseFloat(valorTotal-desconto).toFixed(2)}`)
+    //         $('#valor-desconto-compra').empty().text(`${parseFloat(desconto).toFixed(2)}`)
+    //         break;
+    //     case '3':
+    //         $('#valor-total-compra').empty().text(`${parseFloat(valorTotal).toFixed(2)}`)
+    //         $('#valor-desconto-compra').empty().text(`0.00`)
+    //         break;
+    //     case '4':
+    //         $('#valor-total-compra').empty().text(`${parseFloat(valorTotal).toFixed(2)}`)
+    //         $('#valor-desconto-compra').empty().text(`0.00`)
+    //         break;
+    // }
 
     // console.log(valorTotal,desconto)
 
@@ -102,10 +106,10 @@ $('#valor-pago-compra').on('input',  function(){
             var troco =  parseFloat($(this).val()).toFixed(2) - parseFloat(valorTotal-desconto).toFixed(2)
             break;
         case '3':
-            var troco =  parseFloat($(this).val()).toFixed(2) - parseFloat(valorTotal).toFixed(2)
+            var troco =  parseFloat($(this).val()).toFixed(2) - parseFloat(valorTotal-desconto).toFixed(2)
             break;
         case '4':
-            var troco =  parseFloat($(this).val()).toFixed(2) - parseFloat(valorTotal).toFixed(2)
+            var troco =  parseFloat($(this).val()).toFixed(2) - parseFloat(valorTotal-desconto).toFixed(2)
             break;
     }
     
@@ -154,11 +158,12 @@ $('#valor-pago-compra').on('input',  function(){
 
 })
 
-async function finalizarVendaFiado(cliente,venda){
+async function finalizarVendaFiado(cliente,venda,valor){
 
     var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
 
     var data = {
+            "valorCompra": valor,
             "cliente": cliente,
             "finalizado": true,
         }
@@ -185,6 +190,7 @@ async function finalizarVendaFiado(cliente,venda){
 }
 async function finalizarVendaParcialmente(cliente, venda, valor){
     var pagamentoSelecionado = $('#tipoPagamentoSelecionado').val()
+    var valorOriginal = $('#venda-valor-original').val()
 
     var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
 
@@ -192,6 +198,7 @@ async function finalizarVendaParcialmente(cliente, venda, valor){
             "cliente": cliente,
             "pago": false,
             "valor": valor,
+            "valorCompra": valorOriginal,
             "tipo": pagamentoSelecionado,
         }
 

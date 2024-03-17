@@ -25,6 +25,8 @@ class VendasApiView(viewsets.ModelViewSet):
                 venda.cliente = Cliente.objects.get(id=data.get('cliente')) if data.get('cliente') else None
                 venda.finalizado = True
 
+                venda.valor = float(data.get('valorCompra')) if data.get('valorCompra') else venda.valor 
+                
                 if data.get('tipo'):
                     novoPagamento = Pagamento()
 
@@ -47,11 +49,7 @@ class VendasApiView(viewsets.ModelViewSet):
                     listPagamentos = list()
 
                     for pagamento in venda.pagamentosVenda.all():
-                        if pagamento.tipo in [1,2]: 
-                            listPagamentos.append(round(pagamento.valor + ((5/100) * pagamento.valor),2)) 
-                        else:
-                            listPagamentos.append(round(pagamento.valor,2)) 
-
+                        listPagamentos.append(round(pagamento.valor,2)) 
                     valorTotal = venda.valor
 
                     venda.valor = round(venda.valor + ((5/100)*venda.valor),2)

@@ -103,13 +103,12 @@ async function chamarApiClienteConta(cpf){
     let data = await response.json();
 
     var valor = data.debito.toFixed(2)
-    var valorAvista = (valor/1.05).toFixed(2)
 
     $('#contaClienteNome').empty().text(data.nome)
     $('#contaClienteCpf').val(data.cpf)
 
     $('#contaClienteDebito').val(`R$ ${valor}`)
-    $('#contaClienteDebitoAvista').val(`R$ ${valorAvista}`)
+    // $('#contaClienteDebitoAvista').val(`R$ ${valorAvista}`)
 
     // console.log(`Index: ${Object.getOwnPropertyNames(data.vendas)}`);
     // console.log(`Dados: ${data.vendas}`)

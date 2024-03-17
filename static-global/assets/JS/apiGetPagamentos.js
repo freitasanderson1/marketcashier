@@ -95,7 +95,7 @@ function insertPagamentos(data){
             <li class="card p-1 mb-1 shadow">
                 <div>
                     <h6 class="text-success"> 
-                        ID: ${element.id} - Valor: R$ ${(element.valor*1.05).toFixed(2)} Tipo: <b>${TIPO_PAGAMENTO[element.tipo]}</b> - Data do Pagamento: ${new Date(Date.parse(element.dataCadastro)).toLocaleDateString('pt-BR')}
+                        ID: ${element.id} - Valor: R$ ${(element.valor).toFixed(2)} Tipo: <b>${TIPO_PAGAMENTO[element.tipo]}</b> - Data do Pagamento: ${new Date(Date.parse(element.dataCadastro)).toLocaleDateString('pt-BR')}
                     </h6>
                 </div>
             </li>

@@ -29,9 +29,9 @@ class PagamentosApiView(viewsets.ModelViewSet):
                 case 2:
                     listPagamentos['pix'].append(round(pagamento.valor,2))
                 case 3:
-                    listPagamentos['debito'].append(round(((pagamento.valor*1.05)*0.9801),2))
+                    listPagamentos['debito'].append(round((pagamento.valor*0.9801),2))
                 case 4:
-                    listPagamentos['credito'].append(round(((pagamento.valor*1.05)*0.9502),2))
+                    listPagamentos['credito'].append(round((pagamento.valor*0.9502),2))
                 case _:
                     return
         Pagamento_Serialized = PagamentoSerializer(queryset, many=True)
@@ -78,9 +78,9 @@ class PagamentosApiView(viewsets.ModelViewSet):
                         case 2:
                             listPagamentos['pix'].append(round(pagamento.valor,2))
                         case 3:
-                            listPagamentos['debito'].append(round(((pagamento.valor*1.05)*0.9801),2))
+                            listPagamentos['debito'].append(round((pagamento.valor*0.9801),2))
                         case 4:
-                            listPagamentos['credito'].append(round(((pagamento.valor*1.05)*0.9502),2))
+                            listPagamentos['credito'].append(round((pagamento.valor*0.9502),2))
                         case _:
                             return
                 Pagamento_Serialized = PagamentoSerializer(queryset, many=True)

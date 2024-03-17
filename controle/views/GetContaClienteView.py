@@ -34,11 +34,11 @@ class GetContaClienteView(View):
 
                     [listPagamentos.append(pagamento.valor) for pagamento in venda.pagamentosVenda.all()]
 
-                    valorTotal = round(venda.valor + ((5/100)*venda.valor),2)
-                    valorPago = round(sum(listPagamentos) + ((5/100)*sum(listPagamentos)),2)
+                    valorTotal = round(venda.valor,2)
+                    valorPago = round(sum(listPagamentos),2)
                     resta = round(valorTotal - valorPago,2)
                 else:
-                    resta = round(venda.valor + ((5/100)*venda.valor),2)
+                    resta = round(venda.valor,2)
                 
                 if resta > 0.0000:
                     dictVenda = {
