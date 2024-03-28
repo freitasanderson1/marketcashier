@@ -52,6 +52,11 @@ $('.btn-venda-avista').on('click', function(){
 
 })
 
+$('.btn-voltar-tipoPagamento').on('click', function(){
+    $('#div-troco').addClass('d-none')
+    $('#indexPagamento').removeClass('d-none')
+})
+
 $("input:radio[name='tipoPagamento']").on('click',function(){
     var tipo = $('input[name=tipoPagamento]:checked').val()
 
